@@ -1,6 +1,5 @@
 const express = require("express")
 
-const mongoose = require("mongoose")
 const contact = require("./routes/contact")
 const regUser = require("./routes/user")
 const authUser = require("./routes/auth")
