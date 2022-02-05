@@ -4,11 +4,15 @@ const mongoose = require("mongoose")
 const contact = require("./routes/contact")
 const regUser = require("./routes/user")
 const authUser = require("./routes/auth")
-// const DBConnection = require("./config/db")
+const ConnectDB = require("./config/db")
 const port = process.env.PORT || 3000
 const app = express()
 
 app.get("/", (req,res) => res.json({msg: "Welcome to the Assignment"}))
+
+
+//COnnecting Database
+ConnectDB()
 
 //middlewares
 app.use(express.json()) // send back the responses in json format
