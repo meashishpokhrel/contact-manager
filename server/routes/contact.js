@@ -60,11 +60,58 @@ router.post("/", auth,
     })
 
 router.put("/:id", auth, async(req,res)=> {
-    res.send("Update Contacts !")
+    try {
+        const contact = await Contact.findById(req.params.id);
+        console.log(contact)
+        if (!contact) {
+          return res.status(404).json({
+            msg: "Contact not found.",
+          });
+        }
+        if (contact && contact.user.toString() !== req.user.id) {
+          return res.status(401).json({
+            msg: "Unauthorized.",
+          });
+        }
+        const isDuplicate = await Contact.findOne({ phone: req.body.phone });
+        if (isDuplicate) {
+          return res.status(400).json({
+            mesg: "Phone number already exists.",
+          });
+        }
+        const updatedContact = await Contact.findByIdAndUpdate(
+          req.params.id,
+          req.body,
+          { new: true }
+        );
+            return res.json(updatedContact)
+      } catch (err) {
+        console.error(err.message)
+        res.status(500).json({msg: "Server Error"})
+      }
 })
 
-router.delete("/:id", (req,res)=> {
-    res.send("Delete Contacts !")
+router.delete("/:id",auth, async (req,res)=> {
+    try {
+        const contact = await Contact.findById(req.params.id);
+        console.log(contact)
+        if (!contact) {
+          return res.status(404).json({
+            msg: "Contact not found.",
+          });
+        }
+        if (contact && contact.user.toString() !== req.user.id) {
+          return res.status(401).json({
+            msg: "Unauthorized.",
+          });
+        }
+   
+        await Contact.findByIdAndRemove(req.params.id);
+            return res.status(400).json({msg: "Deleted Successfully !"})
+      } catch (err) {
+        console.error(err.message)
+        res.status(500).json({msg: "Server Error"})
+      }
 })
 
 module.exports = router
