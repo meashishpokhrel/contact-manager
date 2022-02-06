@@ -4,7 +4,7 @@ const contact = require("./routes/contact");
 const regUser = require("./routes/user");
 const authUser = require("./routes/auth");
 const ConnectDB = require("./config/db");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.get("/", (req, res) => res.json({ msg: "Welcome to the Assignment" }));

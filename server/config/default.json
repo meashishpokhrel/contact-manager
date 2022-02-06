@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://ashish:hello1234@cluster0.h9wev.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtKey": "jwtauth"
-}
