@@ -12,8 +12,12 @@ const router = express.Router()
 //Getting all users contacts
 router.get("/",auth, async(req,res)=> {
     try{
-        const contacts = await Contact.find ({user: req.user.id})
+        const contacts = await Contact.find({user: req.user.id}).sort({
+            createdAt: -1,
+        })
+        console.log(contacts)
         res.json(contacts)
+        // res.json({msg: "get ready"})
     }
     catch(err){
         console.error(err.message)
@@ -24,6 +28,7 @@ router.get("/",auth, async(req,res)=> {
 router.post("/", auth, 
     body('name').not().isEmpty(),
     body('email').isEmail(),
+    body('phone').not().isEmpty(),
 
     async (req,res)=> {
         
@@ -33,6 +38,10 @@ router.post("/", auth,
             }
         const {name, email, phone, photo, address, favourite} = req.body
         try{
+            const checkContact = await Contact.findOne({ phone: req.body.phone})
+            if (checkContact){
+                return res.status(400).json({msg: "Phone NUmber Exists"})
+            }
             const newContact = new Contact({
                 name,
                 email,
@@ -50,7 +59,7 @@ router.post("/", auth,
         }
     })
 
-router.put("/:id", (req,res)=> {
+router.put("/:id", auth, async(req,res)=> {
     res.send("Update Contacts !")
 })
 
