@@ -2,9 +2,8 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const dotenv = require("dotenv").config();
 const jwtKey = process.env.jwtKey;
-const { body, validationResult, check } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const auth = require("../middleware/auth");
 
@@ -53,17 +52,11 @@ router.post(
       };
 
       //TO Generate a token and also expiring it in some time
-      jwt.sign(
-        payload,
-        jwtKey,
-        {
-          expiresIn: 360000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+
+      jwt.sign(payload, jwtKey, { expiresIn: 480000 }, (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      });
     } catch {
       console.error(err.message);
       res.status(500).send("server error !");

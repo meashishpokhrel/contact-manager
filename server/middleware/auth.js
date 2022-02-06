@@ -1,9 +1,7 @@
 const jwt = require("jsonwebtoken");
-// const config = require("config")
-const dotenv = require("dotenv").config();
 const jwtKey = process.env.jwtKey;
 
-module.exports = function (req, res, next) {
+const auth = (req, res, next) => {
   // Here we are taking token from Header
 
   const token = req.header("x-auth-token");
@@ -16,8 +14,11 @@ module.exports = function (req, res, next) {
     const decrypted = jwt.verify(token, jwtKey);
 
     req.user = decrypted.user;
+
     next();
   } catch (err) {
     res.status(401).json({ msg: "Token in Invalid !" });
   }
 };
+
+module.exports = auth;
