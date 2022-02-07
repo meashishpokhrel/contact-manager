@@ -6,6 +6,9 @@ import store from "./redux/store";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Addcontact from "./component/contact/Addcontact";
 import Editcontact from "./component/contact/Editcontact";
+import Home from "./component/pages/Home";
+import Login from "./component/auth/Login";
+import Register from "./component/auth/Register";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <div className="container">
             <div className="py-3">
               <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/signin" element={<Login />} />
+                <Route exact path="/signup" element={<Register />} />
                 <Route exact path="/contact" element={<Contact />} />
                 <Route exact path="/contact/add" element={<Addcontact />} />
                 <Route

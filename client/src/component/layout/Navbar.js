@@ -3,17 +3,23 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="nabar shadow fixed-top navbar-expand-sm navbar-dark bg-primary">
+    <nav className="navar shadow fixed-top navbar-expand-sm navbar-dark bg-primary">
       <div className="container">
         <Link to="/" className="navbar-brand">
-          {" "}
-          Contact Manager{" "}
+          Contact Manager
         </Link>
-        <div>
-          <Link to="/contact/add" className="btn btn-light ml-auto">
-            Add Contacts
-          </Link>
-        </div>
+
+        <Link to="/signin" className="btn btn-warning">
+          Sigin
+        </Link>
+
+        <Link to="/signup" className="btn btn-warning">
+          Signup
+        </Link>
+
+        <Link to="/contact/add" className="btn btn-warning">
+          Add Contacts
+        </Link>
       </div>
     </nav>
   );
