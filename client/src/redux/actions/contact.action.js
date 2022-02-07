@@ -1,5 +1,10 @@
 // Creaing some actions
-import { CREATE_CONTACT, GET_CONTACT, EDIT_CONTACT } from "../constant/types";
+import {
+  CREATE_CONTACT,
+  GET_CONTACT,
+  EDIT_CONTACT,
+  DELETE_CONTACT,
+} from "../constant/types";
 
 export const addContact = (contact) => {
   return {
@@ -16,4 +21,9 @@ export const getContact = (id) => ({
 export const editContact = (contact) => ({
   type: EDIT_CONTACT,
   payload: contact,
+});
+
+export const deleteContact = (id) => ({
+  type: DELETE_CONTACT,
+  payload: id,
 });

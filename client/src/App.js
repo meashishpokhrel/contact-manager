@@ -1,5 +1,5 @@
 import "./assets/styles/App.scss";
-import Contact from "./component/contact/Contact";
+import Contact from "./component/contact/AllContacts";
 import Navbar from "./component/layout/Navbar";
 import { Provider } from "react-redux";
 import store from "./redux/store";
