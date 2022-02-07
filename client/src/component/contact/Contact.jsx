@@ -14,6 +14,8 @@ const Contact = () => {
       <th scope="col">Phone</th>
       <th scope="col">Address</th>
       <th scope="col">Favourite</th>
+      <th>Edit</th>
+      <th>Remove</th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +23,7 @@ const Contact = () => {
           contacts.map((contact) => (
             <tr>
             <th scope="row">{contact.id}</th>
-            <td><Avatar src="https://www.w3schools.com/howto/img_avatar.png"/></td>
-            <td>{contact.name}</td>
+            <td><Avatar src="https://www.w3schools.com/howto/img_avatar.png" size="38" round={true} /> {contact.name}</td>
             <td>{contact.email}</td>
             <td>{contact.phone}</td>
             <td>ktm</td>
@@ -32,17 +33,20 @@ const Contact = () => {
                     <label className='custom-control-label'></label>
                 </div>
             </td>
+            <td>
+                <a href="#">
+                <span className='material-icons'>edit</span>
+                </a>
+                </td>
+            <td>
+                <a href="#">
+                <span className='material-icons'>delete</span>
+                </a>
+                </td>
             </tr>
           ))
    
     }
-
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
   </tbody>
 </table>
       )
