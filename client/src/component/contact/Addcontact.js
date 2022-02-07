@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/store";
 
 function Addcontact() {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -9,7 +12,14 @@ function Addcontact() {
 
   const createContact = (e) => {
     e.preventDefault();
-    console.log(name, email, phone, address, photo);
+    const newContact = {
+      name,
+      email,
+      phone,
+      address,
+      photo,
+    };
+    dispatch(addContact(newContact));
   };
 
   return (
