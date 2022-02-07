@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact, getContact } from "../../redux/actions/contact.action";
+import {
+  addContact,
+  getContact,
+  editContact,
+} from "../../redux/actions/contact.action";
 import shortid from "shortid";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Editcontact = () => {
   let { id } = useParams();
   const dispatch = useDispatch();
+  let navigate = useNavigate();
   const contact = useSelector((state) => state.contact.contact);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,21 +20,33 @@ const Editcontact = () => {
   const [photo, setPhoto] = useState("");
 
   useEffect(() => {
-    // if (contact != null) {
-    //   setName(contact.name);
-    //   setEmail(contact.email);
-    //   setAddress(contact.address);
-    //   setPhone(contact.phone);
-    //   setPhoto(contact.photo);
-    // }
+    if (contact != null) {
+      setName(contact.name);
+      setEmail(contact.email);
+      setAddress(contact.address);
+      setPhone(contact.phone);
+      //   setPhoto(contact.photo);
+    }
     dispatch(getContact(id));
-  }, []);
+  }, [contact]);
 
+  const onContactEdit = (e) => {
+    e.preventDefault();
+    const editedContact = Object.assign(contact, {
+      name,
+      address,
+      phone,
+      email,
+    });
+    dispatch(editContact(editedContact));
+    console.log(editedContact);
+    navigate("/contact");
+  };
   return (
     <div className="card border-0 shadow">
       <div className="card-header">Add new Contact</div>
       <div className="card-body">
-        <form>
+        <form onSubmit={(e) => onContactEdit(e)}>
           <div className="form-group mr-2">
             <input
               type="text"
@@ -76,7 +93,7 @@ const Editcontact = () => {
             />
           </div>
           <button className="btn btn-primary" type="submit">
-            Add Contact
+            EDit Contact
           </button>
         </form>
       </div>
