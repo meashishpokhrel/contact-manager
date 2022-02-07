@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 const Contact = () => {
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contact.contacts);
   return (
     <table class="table">
       <thead>
@@ -37,7 +37,7 @@ const Contact = () => {
               </div>
             </td>
             <td>
-              <Link to="/contact">
+              <Link to={`/contact/edit/${contact.id}`}>
                 <span className="material-icons">edit</span>
               </Link>
             </td>
