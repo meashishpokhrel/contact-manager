@@ -1,29 +1,40 @@
 import React from 'react';
+import {useSelector} from "react-redux"
 
-function Contact() {
+const Contact = () => {
+    const contacts = useSelector((state) => state.contacts)
   return(
       <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">S.No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">Favourite</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
+      {
+          contacts.map((contact) => (
+            <tr>
+            <th scope="row">{contact.id}</th>
+            <td>{contact.name}</td>
+            <td>{contact.email}</td>
+            <td>{contact.phone}</td>
+            <td>ktm</td>
+            <td>
+                <div className='custom-control custom-checbox'>
+                    <input type = "checkbox" className='custom-control-input' />
+                    <label className='custom-control-label'></label>
+                </div>
+            </td>
+            </tr>
+          ))
+   
+    }
+
     <tr>
       <th scope="row">3</th>
       <td>Larry</td>

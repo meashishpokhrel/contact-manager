@@ -1,7 +1,8 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-const initialState = [
+const initialState = {
+  contacts: [
   {
     id: 1,
     name: "Leanne Graham",
@@ -232,7 +233,8 @@ const initialState = [
       bs: "target end-to-end models",
     },
   },
-];
+]
+}
 
 const contactReducer = (state = initialState, action) => {
   switch(action.type){
