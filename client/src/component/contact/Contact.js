@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Avatar from "react-avatar";
-
+import { Link } from "react-router-dom";
 const Contact = () => {
   const contacts = useSelector((state) => state.contacts);
   return (
@@ -23,16 +23,12 @@ const Contact = () => {
           <tr>
             <th scope="row">{contact.id}</th>
             <td>
-              <Avatar
-                src="https://www.w3schools.com/howto/img_avatar.png"
-                size="38"
-                round={true}
-              />{" "}
+              <Avatar src={contact.photo} size="38" round={true} />{" "}
               {contact.name}
             </td>
             <td>{contact.email}</td>
             <td>{contact.phone}</td>
-            <td>ktm</td>
+            <td>{contact.address}</td>
             <td>
               <div className="custom-control custom-checbox">
                 <input type="checkbox" className="custom-control-input" />
@@ -40,14 +36,14 @@ const Contact = () => {
               </div>
             </td>
             <td>
-              <a href="#">
+              <Link to="/contact">
                 <span className="material-icons">edit</span>
-              </a>
+              </Link>
             </td>
             <td>
-              <a href="#">
+              <Link to="/contact">
                 <span className="material-icons">delete</span>
-              </a>
+              </Link>
             </td>
           </tr>
         ))}
