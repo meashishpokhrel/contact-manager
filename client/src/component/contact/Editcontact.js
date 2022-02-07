@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/actions/contact.action";
 import shortid from "shortid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Editcontact() {
+const Editcontact = () => {
+  let { id } = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -84,6 +85,6 @@ function Editcontact() {
       </div>
     </div>
   );
-}
+};
 
 export default Editcontact;

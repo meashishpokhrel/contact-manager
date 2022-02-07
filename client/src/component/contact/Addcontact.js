@@ -4,7 +4,7 @@ import { addContact } from "../../redux/actions/contact.action";
 import shortid from "shortid";
 import { useNavigate } from "react-router-dom";
 
-function Addcontact() {
+const Addcontact = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -84,6 +84,6 @@ function Addcontact() {
       </div>
     </div>
   );
-}
+};
 
 export default Addcontact;

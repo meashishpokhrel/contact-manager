@@ -1,4 +1,4 @@
-import { CREATE_CONTACT } from "../constant/types";
+import { CREATE_CONTACT, GET_CONTACT } from "../constant/types";
 
 const initialState = {
   contacts: [
@@ -153,6 +153,7 @@ const initialState = {
       },
     },
   ],
+  contact: null,
 };
 
 export const contactReducer = (state = initialState, action) => {
@@ -161,6 +162,20 @@ export const contactReducer = (state = initialState, action) => {
       return {
         ...state,
         contacts: [action.payload, ...state.contacts],
+      };
+
+    case GET_CONTACT:
+      let contactArr = state.contacts.filter(
+        (contact) => contact.id === action.payload
+      );
+      //To remove array from object
+      contactArr = contactArr.values();
+      for (let val of contactArr) {
+        contactArr = val;
+      }
+      return {
+        ...state,
+        contact: contactArr,
       };
     default:
       return state;
