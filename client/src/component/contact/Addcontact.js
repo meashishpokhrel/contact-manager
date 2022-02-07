@@ -7,11 +7,16 @@ function Addcontact() {
   const [address, setAddress] = useState("");
   const [photo, setPhoto] = useState("");
 
+  const createContact = (e) => {
+    e.preventDefault();
+    console.log(name, email, phone, address, photo);
+  };
+
   return (
     <div className="card border-0 shadow">
       <div className="card-header">Add new Contact</div>
       <div className="card-body">
-        <form>
+        <form onSubmit={(e) => createContact(e)}>
           <div className="form-group mr-2">
             <input
               type="text"
@@ -50,7 +55,7 @@ function Addcontact() {
           </div>
           <div className="form-group">
             <input
-              type="text"
+              type="file"
               className="form-control"
               placeholder="Picture"
               value={photo}
