@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/store";
+import shortid from "shortid";
+import { useNavigate } from "react-router-dom";
 
 function Addcontact() {
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +16,7 @@ function Addcontact() {
   const createContact = (e) => {
     e.preventDefault();
     const newContact = {
+      id: shortid.generate(),
       name,
       email,
       phone,
@@ -20,6 +24,7 @@ function Addcontact() {
       photo,
     };
     dispatch(addContact(newContact));
+    navigate("/contact");
   };
 
   return (
