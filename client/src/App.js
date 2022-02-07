@@ -1,10 +1,13 @@
 import "./assets/styles/App.scss";
+import Contact from "./component/contact/Contact";
+import Navbar from "./component/layout/Navbar";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="text-primary">Designing COntact Mangaer</h1>
+        <Navbar />
+        <Contact />
       </header>
     </div>
   );

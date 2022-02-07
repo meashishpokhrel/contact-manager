@@ -3,4 +3,8 @@ $theme-colors:(
   "danger": #ff4136,
 );
 
-@import "~bootstrap/scss/bootstrap"
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  padding-top: 7rem;
+}
