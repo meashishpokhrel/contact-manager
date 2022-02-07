@@ -166,7 +166,7 @@ export const contactReducer = (state = initialState, action) => {
 
     case GET_CONTACT:
       let contactArr = state.contacts.filter(
-        (contact) => contact.id === action.payload
+        (contact) => contact.id == action.payload
       );
       //To remove array from object
       contactArr = contactArr.values();
@@ -177,6 +177,7 @@ export const contactReducer = (state = initialState, action) => {
         ...state,
         contact: contactArr,
       };
+
     default:
       return state;
   }
