@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux"
+import Avatar from "react-avatar"
 
 const Contact = () => {
     const contacts = useSelector((state) => state.contacts)
@@ -20,6 +21,7 @@ const Contact = () => {
           contacts.map((contact) => (
             <tr>
             <th scope="row">{contact.id}</th>
+            <td><Avatar src="https://www.w3schools.com/howto/img_avatar.png"/></td>
             <td>{contact.name}</td>
             <td>{contact.email}</td>
             <td>{contact.phone}</td>
