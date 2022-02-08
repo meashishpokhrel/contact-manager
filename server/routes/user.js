@@ -49,7 +49,7 @@ router.post(
         payload,
         jwtKey,
         {
-          expiresIn: 360000,
+          expiresIn: 480000,
         },
         (err, token) => {
           if (err) throw err;
