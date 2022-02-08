@@ -4,5 +4,5 @@ export const EDIT_CONTACT = "EDIT_CONTACT";
 export const DELETE_CONTACT = "DELETE_CONTACT";
 export const CREATE_USER = "CREATE_USER";
 export const LOAD_USER = "LOAD_USER";
-export const SIGNIN_USER = "CREATE_USER";
-export const SIGNOUT_USER = "CREATE_USER";
+export const SIGNIN_USER = "SIGNIN_USER";
+export const SIGNOUT_USER = "SIGNOUT_USER";

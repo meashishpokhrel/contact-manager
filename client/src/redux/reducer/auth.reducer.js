@@ -32,7 +32,7 @@ export const authReducer = (state = initialState, action) => {
       };
     case SIGNOUT_USER:
       localStorage.removeItem("token");
-      toast("Goodbye...", {
+      toast("Please Visit Again !!! GoodBye !", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return {
