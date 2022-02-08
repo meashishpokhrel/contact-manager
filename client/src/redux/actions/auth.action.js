@@ -1,9 +1,9 @@
 import axios from "axios";
-import { url } from "../../api";
-import { toast } from "reat-toastify";
+import { url } from "../../api/index";
+import { toast } from "react-toastify";
 import { CREATE_USER } from "../constant/types";
 
-export const createUser = (user) => {
+export const addUser = (user) => {
   return (dispatch) => {
     axios.post(`${url}/user`, user).then((user) => {
       dispatch({

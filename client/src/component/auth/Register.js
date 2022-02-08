@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../redux/actions/auth.action";
+import { addUser } from "../../redux/actions/auth.action";
 
 function Register() {
   const dispatch = useDispatch();
@@ -10,13 +10,16 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const createUser = (e) => {
+    // e.preventDefault();
     e.preventDefault();
     const newUser = {
       name,
       email,
       password,
     };
-    dispatch(createUser(newUser));
+    // console.log("new user" + newUser.name);
+    dispatch(addUser(newUser));
+    console.log(newUser);
   };
   return (
     <div className="card border-0 shadow">
