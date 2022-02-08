@@ -1,4 +1,9 @@
-import { CREATE_USER } from "../constant/types";
+import {
+  CREATE_USER,
+  LOAD_USER,
+  SIGNIN_USER,
+  SIGNOUT_USER,
+} from "../constant/types";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 
@@ -11,17 +16,30 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SIGNIN_USER:
     case CREATE_USER:
-      toast("Welcome..", {
-        position: toast.POSITION.TOP_CENTER,
+    case LOAD_USER:
+      toast("Welcome...", {
+        position: toast.POSITION.BOTTOM_RIGHT,
       });
       const user = jwtDecode(action.token);
       return {
-        ...state,
+        ...initialState,
         token: action.token,
         name: user.name,
         email: user.email,
         _id: user._id,
+      };
+    case SIGNOUT_USER:
+      localStorage.removeItem("token");
+      toast("Goodbye...", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return {
+        token: null,
+        name: null,
+        email: null,
+        _id: null,
       };
 
     default:

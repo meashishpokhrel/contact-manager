@@ -1,6 +1,8 @@
 // Creaing some actions
 import axios from "axios";
 import { url } from "../../api/index";
+import { toast } from "react-toastify";
+
 import {
   CREATE_CONTACT,
   GET_CONTACT,
@@ -9,9 +11,22 @@ import {
 } from "../constant/types";
 
 export const addContact = (contact) => {
-  return {
-    type: CREATE_CONTACT,
-    payload: contact,
+  return (dispatch) => {
+    axios
+      .post(`${url}/contacts`, contact, {
+        headers: { "x-auth-token": localStorage.getItem("token") },
+      })
+      .then((contact) => {
+        dispatch({
+          type: CREATE_CONTACT,
+          payload: contact,
+        });
+      })
+      .catch((error) => {
+        toast.error(error.response?.data?.msg, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      });
   };
 };
 

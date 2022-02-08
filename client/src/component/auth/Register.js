@@ -21,8 +21,11 @@ function Register() {
       password,
     };
     // console.log("new user" + newUser.name);
-    dispatch(addUser(newUser));
-    navigate("/contact");
+    dispatch(
+      addUser(newUser, () => {
+        navigate("/contact");
+      })
+    );
   };
 
   return (
