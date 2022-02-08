@@ -1,4 +1,6 @@
 // Creaing some actions
+import axios from "axios";
+import { url } from "../../api/index";
 import {
   CREATE_CONTACT,
   GET_CONTACT,

@@ -8,6 +8,8 @@ const AllContacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contact.contacts);
 
+  console.log({ contacts });
+
   return (
     <table className="table">
       <thead>

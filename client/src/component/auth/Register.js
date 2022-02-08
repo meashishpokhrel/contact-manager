@@ -22,12 +22,8 @@ function Register() {
     };
     // console.log("new user" + newUser.name);
     dispatch(addUser(newUser));
-  };
-  console.log(auth);
-  console.log(auth._id);
-  if (auth._id) {
     navigate("/contact");
-  }
+  };
 
   return (
     <div className="card border-0 shadow">

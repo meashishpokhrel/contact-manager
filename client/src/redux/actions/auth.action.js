@@ -68,7 +68,7 @@ export const signOut = () => {
     });
 
     dispatch({
-      type: "SIGN_OUT",
+      type: SIGNOUT_USER,
     });
   };
 };
