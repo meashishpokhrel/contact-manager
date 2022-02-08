@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../redux/actions/auth.action";
 
 function Register() {
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassowrd] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const createUser = (e) => {
+    e.preventDefault();
+    const newUser = {
+      name,
+      email,
+      password,
+    };
+    dispatch(createUser(newUser));
+  };
   return (
     <div className="card border-0 shadow">
       <div className="card-header">New User ? Register Please !</div>
       <div className="card-body">
-        <form>
+        <form onSubmit={(e) => createUser(e)}>
           <div className="form-group mr-2">
             <input
               type="text"
               className="form-control"
               placeholder="Name"
-              // value={name}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -19,7 +37,8 @@ function Register() {
               type="text"
               className="form-control"
               placeholder="Email"
-              // value={email}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -27,7 +46,8 @@ function Register() {
               type="Password"
               className="form-control"
               placeholder="Password"
-              // value={phone}
+              value={password}
+              onChange={(e) => setPassowrd(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -35,7 +55,8 @@ function Register() {
               type="password"
               className="form-control"
               placeholder="Confirm Password"
-              // value={address}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
 
