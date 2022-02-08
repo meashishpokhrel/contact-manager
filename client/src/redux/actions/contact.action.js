@@ -16,10 +16,11 @@ export const addContact = (contact) => {
       .post(`${url}/contacts`, contact, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
-      .then((contact) => {
+      .then(({ data }) => {
+        console.log({ data });
         dispatch({
           type: CREATE_CONTACT,
-          payload: contact,
+          payload: data,
         });
       })
       .catch((error) => {
