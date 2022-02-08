@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="navar shadow fixed-top navbar-expand-sm navbar-dark bg-primary">
       <div className="container">
-        <Link to="/" className="navbar-brand">
+        <Link to="/contact" className="navbar-brand">
           Contact Manager
         </Link>
 
