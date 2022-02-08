@@ -3,6 +3,7 @@ import {
   GET_CONTACT,
   EDIT_CONTACT,
   DELETE_CONTACT,
+  GET_ONE_CONTACT,
 } from "../constant/types";
 
 const initialState = {
@@ -19,6 +20,12 @@ export const contactReducer = (state = initialState, action) => {
         contacts: [action.payload, ...state.contacts],
       };
 
+    case GET_ONE_CONTACT:
+      return {
+        ...state,
+        contact: action.payload,
+      };
+
     case GET_CONTACT:
       return {
         ...state,
@@ -29,7 +36,7 @@ export const contactReducer = (state = initialState, action) => {
       return {
         ...state,
         contacts: state.contacts.map((contact) =>
-          contact.id == action.payload.id ? action.payload : contact
+          contact._id == action.payload._id ? action.payload : contact
         ),
       };
 

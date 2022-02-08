@@ -4,6 +4,7 @@ import {
   addContact,
   getContact,
   editContact,
+  getOneContact,
 } from "../../redux/actions/contact.action";
 import shortid from "shortid";
 import { useParams, useNavigate } from "react-router-dom";
@@ -20,16 +21,18 @@ const Editcontact = () => {
   const [photo, setPhoto] = useState("");
 
   useEffect(() => {
-    if (contact != null) {
+    if (contact) {
       setName(contact.name);
       setEmail(contact.email);
-      setAddress(contact.address);
       setPhone(contact.phone);
-      //   setPhoto(contact.photo);
+      setAddress(contact.address);
     }
-    dispatch(getContact(id));
   }, [contact]);
 
+  useEffect(() => {
+    dispatch(getOneContact(id));
+  }, []);
+  console.log(contact);
   const onContactEdit = (e) => {
     e.preventDefault();
     const editedContact = Object.assign(contact, {
@@ -38,7 +41,7 @@ const Editcontact = () => {
       phone,
       email,
     });
-    dispatch(editContact(editedContact));
+    dispatch(editContact(editedContact, editedContact._id));
     console.log(editedContact);
     navigate("/contact");
   };

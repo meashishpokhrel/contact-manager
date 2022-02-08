@@ -5,12 +5,12 @@ import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 
 const Contact = ({ contact }) => {
-  const { id } = contact;
+  const { _id } = contact;
   const dispatch = useDispatch();
 
   return (
     <tr>
-      <th scope="row">{contact.id}</th>
+      <th scope="row">{contact._id}</th>
       <td>
         <Avatar src={contact.photo} size="38" round={true} /> {contact.name}
       </td>
@@ -24,7 +24,7 @@ const Contact = ({ contact }) => {
         </div>
       </td>
       <td>
-        <Link to={`/contact/edit/${contact.id}`}>
+        <Link to={`/contact/edit/${contact._id}`}>
           <span className="material-icons">edit</span>
         </Link>
       </td>
@@ -32,7 +32,7 @@ const Contact = ({ contact }) => {
         <span
           type="button"
           className="material-icons text-danger"
-          onClick={() => dispatch(deleteContact(id))}
+          onClick={() => dispatch(deleteContact(_id))}
         >
           delete
         </span>
