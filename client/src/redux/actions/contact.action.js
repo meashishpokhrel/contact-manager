@@ -91,7 +91,25 @@ export const editContact = (updatedContact, id) => {
   };
 };
 
-export const deleteContact = (id) => ({
-  type: DELETE_CONTACT,
-  payload: id,
-});
+export const deleteContact = (id) => {
+  return (dispatch) => {
+    axios
+      .delete(`${url}/contacts/${id}`, {
+        headers: { "x-auth-token": localStorage.getItem("token") },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: DELETE_CONTACT,
+          payload: id,
+        });
+        toast.error("Deleted Successfully", {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      })
+      .catch((error) => {
+        toast.error(error.response?.data?.msg, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      });
+  };
+};
