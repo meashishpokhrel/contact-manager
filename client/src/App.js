@@ -9,11 +9,14 @@ import Editcontact from "./component/contact/Editcontact";
 import Home from "./component/pages/Home";
 import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
+        <ToastContainer />
         <div className="App">
           <Navbar />
           <div className="container">

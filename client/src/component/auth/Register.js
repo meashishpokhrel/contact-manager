@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../redux/actions/auth.action";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
@@ -19,8 +22,13 @@ function Register() {
     };
     // console.log("new user" + newUser.name);
     dispatch(addUser(newUser));
-    console.log(newUser);
   };
+  console.log(auth);
+  console.log(auth._id);
+  if (auth._id) {
+    navigate("/contact");
+  }
+
   return (
     <div className="card border-0 shadow">
       <div className="card-header">New User ? Register Please !</div>
