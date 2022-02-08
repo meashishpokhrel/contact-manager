@@ -13,7 +13,8 @@ const router = express.Router();
 //Getting logged in  User
 router.get("/", auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    console.log("User", req.user);
+    const user = await User.findById(req.user._id).select("-password");
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -24,8 +25,10 @@ router.get("/", auth, async (req, res) => {
 //Authenticating user and getting the token
 router.post(
   "/",
-  body("email").isEmail(),
-  body("password").exists(),
+  body("email")
+    .isEmail()
+    .withMessage({ msg: "Please Enter Valid Email Address" }),
+  body("password").exists().withMessage({ msg: "Please Enter Password" }),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -33,7 +36,7 @@ router.post(
     }
 
     const { email, password } = req.body;
-
+    console.log({ email, password });
     try {
       let user = await User.findOne({ email });
 
@@ -45,20 +48,18 @@ router.post(
       if (!isMatch) {
         return res.status(400).json({ msg: "Invalid Credentials ! " });
       }
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
 
-      //TO Generate a token and also expiring it in some time
+      const token = jwt.sign(
+        { _id: user._id, name: user.name, email: user.email },
+        jwtKey
+        // {
+        //   expiresIn: 480000,
+        // }
+      );
 
-      jwt.sign(payload, jwtKey, { expiresIn: 480000 }, (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      });
-    } catch {
-      console.error(err.message);
+      res.send(token);
+    } catch (err) {
+      console.error(err?.message);
       res.status(500).send("server error !");
     }
   }

@@ -1,7 +1,9 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
-
+const multer = require("multer");
+const upload = multer;
+({ dest: "uploads/" });
 const User = require("../models/User");
 const Contact = require("../models/Contact");
 
@@ -12,9 +14,23 @@ const router = express.Router();
 router.get("/", auth, async (req, res) => {
   try {
     console.log(req.user);
-    const contacts = await Contact.find({ user: req.user.id }).sort({
+    const contacts = await Contact.find({ user: req.user._id }).sort({
       createdAt: -1,
     });
+    console.log(contacts);
+    res.json(contacts);
+    // res.json({msg: "get ready"})
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: "Server Error !" });
+  }
+});
+
+router.get("/:id", auth, async (req, res) => {
+  try {
+    console.log(req.user);
+    // const contacts = await Contact.findOne(_id: req.params._id)
+    const contacts = await Contact.findById(req.params.id);
     console.log(contacts);
     res.json(contacts);
     // res.json({msg: "get ready"})
@@ -43,7 +59,7 @@ router.post(
         return res.status(400).json({ msg: "Phone NUmber Exists" });
       }
       const newContact = new Contact({
-        user: req.user.id,
+        user: req.user._id,
         name,
         email,
         phone,
@@ -69,13 +85,14 @@ router.put("/:id", auth, async (req, res) => {
         msg: "Contact not found.",
       });
     }
-    if (contact && contact.user.toString() !== req.user.id) {
+    if (contact && contact.user.toString() !== req.user._id) {
       return res.status(401).json({
         msg: "Unauthorized.",
       });
     }
     const isDuplicate = await Contact.findOne({ phone: req.body.phone });
-    if (isDuplicate) {
+    console.log({ isDuplicate });
+    if (isDuplicate && isDuplicate.user.toString() !== req.user._id) {
       return res.status(400).json({
         mesg: "Phone number already exists.",
       });
@@ -101,14 +118,14 @@ router.delete("/:id", auth, async (req, res) => {
         msg: "Contact not found.",
       });
     }
-    if (contact && contact.user.toString() !== req.user.id) {
+    if (contact && contact.user.toString() !== req.user._id) {
       return res.status(401).json({
         msg: "Unauthorized.",
       });
     }
 
     await Contact.findByIdAndRemove(req.params.id);
-    return res.status(400).json({ msg: "Deleted Successfully !" });
+    return res.status(200).json({ msg: "Deleted Successfully !" });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: "Server Error" });

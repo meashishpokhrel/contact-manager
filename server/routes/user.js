@@ -38,24 +38,34 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
       await user.save();
 
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-
-      //TO Generate a token and also expiring it in some time
-      jwt.sign(
-        payload,
-        jwtKey,
-        {
-          expiresIn: 480000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
+      const token = jwt.sign(
+        { _id: user._id, name: user.name, email: user.email },
+        jwtKey
+        // {
+        //   expiresIn: 480000,
+        // }
       );
+
+      res.send(token);
+
+      // const payload = {
+      //   user: {
+      //     id: user.id,
+      //   },
+      // };
+
+      // //TO Generate a token and also expiring it in some time
+      // jwt.sign(
+      //   payload,
+      //   jwtKey,
+      //   {
+      //     expiresIn: 480000,
+      //   },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.json({ token });
+      //   }
+      // );
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
