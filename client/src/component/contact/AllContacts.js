@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/actions/contact.action";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 import Contact from "./Contact";
+import { getContact } from "../../redux/actions/contact.action";
 const AllContacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contact.contacts);
 
   console.log({ contacts });
 
+  useEffect(() => {
+    dispatch(getContact());
+  }, [dispatch]);
   return (
     <table className="table">
       <thead>

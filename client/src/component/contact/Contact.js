@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/actions/contact.action";
 import Avatar from "react-avatar";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Contact = ({ contact }) => {
   const { id } = contact;
   const dispatch = useDispatch();
+
   return (
     <tr>
       <th scope="row">{contact.id}</th>

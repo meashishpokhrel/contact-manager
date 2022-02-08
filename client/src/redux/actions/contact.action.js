@@ -31,10 +31,25 @@ export const addContact = (contact) => {
   };
 };
 
-export const getContact = (id) => ({
-  type: GET_CONTACT,
-  payload: id,
-});
+export const getContact = () => {
+  return (dispatch) => {
+    axios
+      .get(`${url}/contacts`, {
+        headers: { "x-auth-token": localStorage.getItem("token") },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: GET_CONTACT,
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        toast.error(error.response?.data?.msg, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+      });
+  };
+};
 
 export const editContact = (contact) => ({
   type: EDIT_CONTACT,
