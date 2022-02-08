@@ -28,18 +28,6 @@ export const addUser = (user, callback) => {
   };
 };
 
-export const loadUser = () => {
-  return (dispatch, getState) => {
-    const token = getState().auth.token;
-    if (token) {
-      dispatch({
-        type: LOAD_USER,
-        token,
-      });
-    } else return null;
-  };
-};
-
 export const signIn = (email, password, callback) => {
   return (dispatch) => {
     axios
@@ -54,8 +42,8 @@ export const signIn = (email, password, callback) => {
         callback?.();
       })
       .catch((error) => {
-        console.log(error.response);
-
+        console.log(error);
+        // console.log(error.response?.data.msg);
         toast.error(error.response?.data.msg, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });

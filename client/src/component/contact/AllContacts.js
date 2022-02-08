@@ -9,16 +9,26 @@ const AllContacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contact.contacts);
 
-  console.log({ contacts });
+  const favouriteContacts = contacts
+    .filter(({ favourite }) => favourite)
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+  const restContacts = contacts.filter(({ favourite }) => !favourite);
 
   useEffect(() => {
     dispatch(getContact());
   }, [dispatch]);
   return (
-    <table className="table">
+    <table className="table table-dark">
       <thead>
         <tr>
-          <th>S.No</th>
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
@@ -29,8 +39,8 @@ const AllContacts = () => {
         </tr>
       </thead>
       <tbody>
-        {contacts.map((contact) => (
-          <Contact contact={contact} key={contact.id} />
+        {[...favouriteContacts, ...restContacts].map((contact) => (
+          <Contact contact={contact} key={contact._id} />
         ))}
       </tbody>
     </table>

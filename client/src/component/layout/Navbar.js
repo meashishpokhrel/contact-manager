@@ -22,26 +22,27 @@ const Navbar = () => {
             <Link to="/contact" className="navbar-brand">
               Contact Manager
             </Link>
-            <Link to="/contact/add" className="btn btn-warning">
-              Add Contacts
-            </Link>
+
             <button
-              className="btn btn-warning"
+              className="btn btn-dark button-nav"
               onClick={(e) => handleSignOut(e)}
             >
               Signout
             </button>
+            <Link to="/contact/add" className="btn btn-warning button-nav">
+              Add Contacts
+            </Link>
           </>
         ) : (
           <>
             <Link to="/contact" className="navbar-brand">
               Contact Manager
             </Link>
-            <Link to="/signin" className="btn btn-warning">
-              Sigin
+            <Link to="/signin" className="btn btn-warning button-nav">
+              Sign In
             </Link>
-            <Link to="/signup" className="btn btn-warning">
-              Signup
+            <Link to="/signup" className="btn btn-warning button-nav">
+              Sign Up
             </Link>
           </>
         )}
