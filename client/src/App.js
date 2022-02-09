@@ -10,12 +10,11 @@ import {
 } from "react-router-dom";
 import Addcontact from "./component/contact/Addcontact";
 import Editcontact from "./component/contact/Editcontact";
-import Home from "./component/pages/Home";
+import Home from "./pages/Home";
 import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ProtectedRoute from "./component/layout/ProtectedRoute";
 
 const routes = [
   { path: "/", component: Home, private: null },

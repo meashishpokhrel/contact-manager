@@ -13,13 +13,10 @@ const router = express.Router();
 //Getting all users contacts
 router.get("/", auth, async (req, res) => {
   try {
-    console.log(req.user);
     const contacts = await Contact.find({ user: req.user._id }).sort({
       createdAt: -1,
     });
-    console.log(contacts);
     res.json(contacts);
-    // res.json({msg: "get ready"})
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ msg: "Server Error !" });
@@ -28,14 +25,9 @@ router.get("/", auth, async (req, res) => {
 
 router.get("/:id", auth, async (req, res) => {
   try {
-    console.log(req.user);
-    // const contacts = await Contact.findOne(_id: req.params._id)
     const contacts = await Contact.findById(req.params.id);
-    console.log(contacts);
     res.json(contacts);
-    // res.json({msg: "get ready"})
   } catch (err) {
-    console.error(err.message);
     res.status(500).json({ msg: "Server Error !" });
   }
 });
@@ -79,7 +71,6 @@ router.post(
 router.put("/:id", auth, async (req, res) => {
   try {
     const contact = await Contact.findById(req.params.id);
-    console.log(contact);
     if (!contact) {
       return res.status(404).json({
         msg: "Contact not found.",
@@ -91,7 +82,6 @@ router.put("/:id", auth, async (req, res) => {
       });
     }
     const isDuplicate = await Contact.findOne({ phone: req.body.phone });
-    console.log({ isDuplicate });
     if (isDuplicate && isDuplicate.user.toString() !== req.user._id) {
       return res.status(400).json({
         mesg: "Phone number already exists.",
@@ -112,7 +102,6 @@ router.put("/:id", auth, async (req, res) => {
 router.delete("/:id", auth, async (req, res) => {
   try {
     const contact = await Contact.findById(req.params.id);
-    console.log(contact);
     if (!contact) {
       return res.status(404).json({
         msg: "Contact not found.",

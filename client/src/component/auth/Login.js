@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { signIn } from "../../redux/actions/auth.action";
-import Input from "../Input/Input";
+import Input from "../Form-Input/Input";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

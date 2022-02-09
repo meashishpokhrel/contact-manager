@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/actions/contact.action";
 import shortid from "shortid";
 import { useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
+import Input from "../Form-Input/Input";
 
 const Addcontact = () => {
   let navigate = useNavigate();
@@ -54,12 +54,12 @@ const Addcontact = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
-          <Input
+          {/* <Input
             type="file"
             placeholder="Picture"
             value={photo}
             onChange={(e) => setPhoto(e.target.value)}
-          />
+          /> */}
           <button className="btn btn-primary" type="submit">
             Add Contact
           </button>

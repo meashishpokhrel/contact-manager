@@ -8,7 +8,7 @@ import {
 } from "../../redux/actions/contact.action";
 import shortid from "shortid";
 import { useParams, useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
+import Input from "../Form-Input/Input";
 
 const Editcontact = () => {
   let { id } = useParams();
@@ -74,12 +74,12 @@ const Editcontact = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
-          <Input
+          {/* <Input
             type="file"
             placeholder="Picture"
             value={photo}
             onChange={(e) => setPhoto(e.target.value)}
-          />
+          /> */}
 
           <button className="btn btn-primary" type="submit">
             Edit Contact

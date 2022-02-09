@@ -9,19 +9,6 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
-// api/signin
-//Getting logged in  User
-router.get("/", auth, async (req, res) => {
-  try {
-    console.log("User", req.user);
-    const user = await User.findById(req.user._id).select("-password");
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ msg: "Server Error" });
-  }
-});
-
 //Authenticating user and getting the token
 router.post(
   "/",
