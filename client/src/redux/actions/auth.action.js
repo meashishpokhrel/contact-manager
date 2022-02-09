@@ -8,7 +8,7 @@ import {
   SIGNOUT_USER,
 } from "../constant/types";
 
-export const addUser = (user, callback) => {
+export const addUser = (user) => {
   return (dispatch) => {
     axios
       .post(`${url}/user`, user)
@@ -18,7 +18,6 @@ export const addUser = (user, callback) => {
           type: CREATE_USER,
           token: token.data,
         });
-        callback?.();
       })
       .catch((error) => {
         toast.error(error.response?.data?.err[0].msg, {
@@ -28,7 +27,7 @@ export const addUser = (user, callback) => {
   };
 };
 
-export const signIn = (email, password, callback) => {
+export const signIn = (email, password) => {
   return (dispatch) => {
     axios
       .post(`${url}/auth`, { email, password })
@@ -39,7 +38,6 @@ export const signIn = (email, password, callback) => {
           type: SIGNIN_USER,
           token: token.data,
         });
-        callback?.();
       })
       .catch((error) => {
         toast.error(error.response?.data.msg, {

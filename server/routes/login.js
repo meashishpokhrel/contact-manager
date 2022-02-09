@@ -37,10 +37,10 @@ router.post(
 
       const token = jwt.sign(
         { _id: user._id, name: user.name, email: user.email },
-        jwtKey
-        // {
-        //   expiresIn: 480000,
-        // }
+        jwtKey,
+        {
+          expiresIn: 480000,
+        }
       );
 
       res.send(token);

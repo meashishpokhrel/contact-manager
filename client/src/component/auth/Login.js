@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { signIn } from "../../redux/actions/auth.action";
 import Input from "../Form-Input/Input";
-function Login() {
+
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -44,6 +45,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

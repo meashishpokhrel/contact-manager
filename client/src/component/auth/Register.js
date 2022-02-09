@@ -14,7 +14,6 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const createUser = (e) => {
-    // e.preventDefault();
     e.preventDefault();
     const newUser = {
       name,
