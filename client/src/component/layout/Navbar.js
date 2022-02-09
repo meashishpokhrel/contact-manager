@@ -38,7 +38,7 @@ const Navbar = () => {
             <Link to="/contact" className="navbar-brand">
               Contact Manager
             </Link>
-            <Link to="/signin" className="btn btn-warning button-nav">
+            <Link to="/signin" className="btn btn-primary button-nav">
               Sign In
             </Link>
             <Link to="/signup" className="btn btn-warning button-nav">
