@@ -42,8 +42,6 @@ export const signIn = (email, password, callback) => {
         callback?.();
       })
       .catch((error) => {
-        console.log(error);
-        // console.log(error.response?.data.msg);
         toast.error(error.response?.data.msg, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });

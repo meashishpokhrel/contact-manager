@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export const contactReducer = (state = initialState, action) => {
-  console.log({ action });
   switch (action.type) {
     case CREATE_CONTACT:
       return {

@@ -24,7 +24,6 @@ const Addcontact = () => {
       address,
       photo,
     };
-    console.log("New Contact" + newContact.name);
     dispatch(addContact(newContact));
     navigate("/contact");
   };

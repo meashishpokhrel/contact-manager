@@ -13,8 +13,6 @@ function Login() {
 
   const loginUser = (e) => {
     e.preventDefault();
-
-    // console.log("new user" + newUser.name);
     dispatch(
       signIn(email, password, () => {
         navigate("/contact");

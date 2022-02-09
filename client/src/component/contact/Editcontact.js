@@ -23,7 +23,6 @@ const Editcontact = () => {
 
   useEffect(() => {
     if (contact) {
-      console.log({ contact });
       setName(contact.name);
       setEmail(contact.email);
       setPhone(contact.phone);
@@ -36,7 +35,7 @@ const Editcontact = () => {
   useEffect(() => {
     dispatch(getOneContact(id));
   }, []);
-  console.log(contact);
+
   const onContactEdit = (e) => {
     e.preventDefault();
     const editedContact = Object.assign(contact, {
@@ -46,7 +45,6 @@ const Editcontact = () => {
       email,
     });
     dispatch(editContact(editedContact, editedContact._id));
-    console.log(editedContact);
     navigate("/contact");
   };
   return (

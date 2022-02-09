@@ -21,7 +21,6 @@ function Register() {
       email,
       password,
     };
-    // console.log("new user" + newUser.name);
     dispatch(
       addUser(newUser, () => {
         navigate("/contact");
