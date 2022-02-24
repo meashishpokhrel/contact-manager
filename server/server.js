@@ -1,8 +1,8 @@
 const express = require("express");
 
 const contact = require("./routes/contact");
-const regUser = require("./routes/register");
-const loginUser = require("./routes/login");
+
+const authUser = require("./routes/auth");
 const ConnectDB = require("./config/db");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -18,8 +18,8 @@ app.use(cors());
 app.use(express.json()); // send back the responses in json format
 
 // Routes
-app.use("/api/user", regUser);
-app.use("/api/auth", loginUser);
+
+app.use("/api/auth", authUser);
 app.use("/api/contacts", contact);
 
 //COnfiguting the Server

@@ -11,7 +11,7 @@ import {
 export const addUser = (user) => {
   return (dispatch) => {
     axios
-      .post(`${url}/user`, user)
+      .post(`${url}/auth/register`, user)
       .then((token) => {
         localStorage.setItem("token", token.data);
         dispatch({
@@ -30,7 +30,7 @@ export const addUser = (user) => {
 export const signIn = (email, password) => {
   return (dispatch) => {
     axios
-      .post(`${url}/auth`, { email, password })
+      .post(`${url}/auth/login`, { email, password })
       .then((token) => {
         localStorage.setItem("token", token.data);
 
