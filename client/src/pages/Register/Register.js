@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../redux/actions/auth.action";
 import { useNavigate } from "react-router-dom";
-import Input from "../Form-Input/Input";
+import Input from "../../component/Form-Input/Input";
 
 function Register() {
   const dispatch = useDispatch();

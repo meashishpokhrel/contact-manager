@@ -1,6 +1,6 @@
 import "./assets/styles/App.scss";
-import Contact from "./component/contact/AllContacts";
-import Navbar from "./component/layout/Navbar";
+import Contact from "./pages/Contacts/AllContacts";
+import Navbar from "./component/Navbar/Navbar";
 import { Provider, useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
@@ -8,16 +8,16 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Addcontact from "./component/contact/Addcontact";
-import Editcontact from "./component/contact/Editcontact";
-import Home from "./pages/Home";
-import Login from "./component/auth/Login";
-import Register from "./component/auth/Register";
+import Addcontact from "./pages/AddContacts/AddContact";
+import Editcontact from "./pages/EditContacts/EditContact";
+import HomePage from "./pages/HomePage/HomePage";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const routes = [
-  { path: "/", component: Home, private: null },
+  { path: "/", component: HomePage, private: null },
   { path: "/signin", component: Login, private: false },
   { path: "/signup", component: Register, private: false },
   { path: "/contact/add", component: Addcontact, private: true },

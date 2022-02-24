@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/actions/contact.action";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
-import Contact from "./Contact";
+import Contact from "../../component/contact/Contact";
 import { getContact } from "../../redux/actions/contact.action";
 const AllContacts = () => {
   const dispatch = useDispatch();

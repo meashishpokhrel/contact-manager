@@ -1,57 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addContact,
-  getContact,
-  editContact,
-  getOneContact,
-} from "../../redux/actions/contact.action";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/actions/contact.action";
 import shortid from "shortid";
-import { useParams, useNavigate } from "react-router-dom";
-import Input from "../Form-Input/Input";
+import { useNavigate } from "react-router-dom";
+import Input from "../../component/Form-Input/Input";
 
-const Editcontact = () => {
-  let { id } = useParams();
-  const dispatch = useDispatch();
+const Addcontact = () => {
   let navigate = useNavigate();
-  const contact = useSelector((state) => state.contact.contact);
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [photo, setPhoto] = useState("");
 
-  useEffect(() => {
-    if (contact) {
-      setName(contact.name);
-      setEmail(contact.email);
-      setPhone(contact.phone);
-      setAddress(contact.address);
-    }
-  }, [contact]);
-
-  console.log({ name, address, phone, email });
-
-  useEffect(() => {
-    dispatch(getOneContact(id));
-  }, []);
-
-  const onContactEdit = (e) => {
+  const createContact = (e) => {
     e.preventDefault();
-    const editedContact = Object.assign(contact, {
+    const newContact = {
+      id: shortid.generate(),
       name,
-      address,
-      phone,
       email,
-    });
-    dispatch(editContact(editedContact, editedContact._id));
+      phone,
+      address,
+      photo,
+    };
+    dispatch(addContact(newContact));
     navigate("/contact");
   };
+
   return (
     <div className="card border-0 shadow">
       <div className="card-header">Add new Contact</div>
       <div className="card-body">
-        <form onSubmit={(e) => onContactEdit(e)}>
+        <form onSubmit={(e) => createContact(e)}>
           <Input
             value={name}
             placeholder={"Name"}
@@ -78,9 +59,8 @@ const Editcontact = () => {
             value={photo}
             onChange={(e) => setPhoto(e.target.value)}
           /> */}
-
           <button className="btn btn-primary" type="submit">
-            Edit Contact
+            Add Contact
           </button>
         </form>
       </div>
@@ -88,4 +68,4 @@ const Editcontact = () => {
   );
 };
 
-export default Editcontact;
+export default Addcontact;
