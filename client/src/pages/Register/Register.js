@@ -9,10 +9,7 @@ function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassowrd] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+
   const [formData, setFormData] = useState({
     name: { value: "", placeholder: "Name", type: "text" },
     email: { value: "", placeholder: "Email", type: "email" },

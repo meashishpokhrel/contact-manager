@@ -7,8 +7,6 @@ import Input from "../../component/Form-Input/Input";
 import AuthForm from "../../component/auth-form/authForm";
 
 const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
