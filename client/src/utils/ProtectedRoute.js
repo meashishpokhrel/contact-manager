@@ -9,10 +9,11 @@ import {
 
 const ProtectedRoute = ({ children }) => {
   const auth = useSelector((states) => states.auth);
-  if (auth.token === null) {
-    return <Navigate to="/" />;
+  let route = children;
+  if (!auth.token) {
+    route = <Navigate to="/" />;
   }
-  return children;
+  return route;
 };
 
 export default ProtectedRoute;

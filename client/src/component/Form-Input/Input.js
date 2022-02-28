@@ -1,9 +1,9 @@
 import React from "react";
 
-const Input = ({ value, onChange, placeholder, type }) => {
+const Input = ({ value, onChange, placeholder, type, error }) => {
   return (
     <div className="form-group mr-2">
-      {/* <p>Hello</p> */}
+      {error && <div>{error}</div>}
       <input
         type={type}
         className="form-control"

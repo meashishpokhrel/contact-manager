@@ -61,17 +61,13 @@ function Register() {
 
   return (
     <>
-      <p>
-        {Object.values(formErrors).map((x) => {
-          return x;
-        })}
-      </p>
       <AuthForm
         handleSubmit={createUser}
         formData={formData}
         setFormData={setFormData}
         header={"New User ? Register Please !"}
         buttonName={"Register"}
+        errors={formErrors}
       />
     </>
   );

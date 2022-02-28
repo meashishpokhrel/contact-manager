@@ -34,6 +34,7 @@ const AuthForm = ({
   setFormData,
   header,
   buttonName,
+  errors,
 }) => {
   const handleChange = (e, keyName) => {
     let newFormData = { ...formData };
@@ -53,6 +54,7 @@ const AuthForm = ({
               type={formData[c].type}
               value={formData[c].value}
               onChange={(e) => handleChange(e, c)}
+              error={errors[c]}
             />
           ))}
 

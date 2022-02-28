@@ -26,7 +26,9 @@ const Login = () => {
 
     dispatch(
       signIn(email, password, () => {
+        console.log("hitting t");
         navigate("/contact");
+
         // <Link to="/contact" />;
       })
     );
@@ -51,17 +53,13 @@ const Login = () => {
 
   return (
     <>
-      <p>
-        {Object.values(formErrors).map((x) => {
-          return x;
-        })}
-      </p>
       <AuthForm
         handleSubmit={loginUser}
         formData={formData}
         setFormData={setFormData}
         header={"Already Created ! Login in Here Please !"}
         buttonName={"Login"}
+        errors={formErrors}
       />
     </>
   );
