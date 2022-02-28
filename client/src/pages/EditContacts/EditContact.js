@@ -22,33 +22,31 @@ const Editcontact = () => {
   const [address, setAddress] = useState("");
   const [photo, setPhoto] = useState("");
 
-  const [formData, setFormData] = useState({
-    name: { value: "", placeholder: "Name", type: "text" },
-    email: { value: "", placeholder: "Email", type: "email" },
-    phone: { value: "", placeholder: "Phone", type: "text" },
-    address: { value: "", placeholder: "Password", type: "text" },
-  });
+  // const [formData, setFormData] = useState({
+  //   name: { value: "", placeholder: "Name", type: "text" },
+  //   email: { value: "", placeholder: "Email", type: "email" },
+  //   phone: { value: "", placeholder: "Phone", type: "text" },
+  //   address: { value: "", placeholder: "Password", type: "text" },
+  // });
 
   const state = useEffect(() => {
     if (contact) {
-      let newForm = { ...formData };
-      newForm.name.value = contact.name;
-      newForm.email.value = contact.email;
-      newForm.phone.value = contact.phone;
-      newForm.address.value = contact.address;
-      setFormData(newForm);
-      // setName(contact.name);
-      // setEmail(contact.email);
-      // setPhone(contact.phone);
-      // setAddress(contact.address);
+      // let newForm = { ...formData };
+      // newForm.name.value = contact.name;
+      // newForm.email.value = contact.email;
+      // newForm.phone.value = contact.phone;
+      // newForm.address.value = contact.address;
+      // setFormData(newForm);
+      setName(contact.name);
+      setEmail(contact.email);
+      setPhone(contact.phone);
+      setAddress(contact.address);
     }
   }, [contact]);
 
-  console.log({ name, address, phone, email });
-
-  useEffect(() => {
-    dispatch(getOneContact(id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getOneContact(id));
+  // }, []);
 
   const onContactEdit = (e) => {
     e.preventDefault();

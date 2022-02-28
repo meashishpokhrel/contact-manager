@@ -21,13 +21,11 @@ function Register() {
 
   const createUser = (e) => {
     e.preventDefault();
-    console.log("hitted");
     const newUser = {
       name: formData.name.value,
       email: formData.email.value,
       password: formData.password.value,
     };
-    console.log(newUser);
     dispatch(
       addUser(newUser, () => {
         navigate("/contact");
@@ -36,33 +34,6 @@ function Register() {
   };
 
   return (
-    // <div className="card border-0 shadow">
-    //   <div className="card-header">New User ? Register Please !</div>
-    //   <div className="card-body">
-    //     <form onSubmit={(e) => createUser(e)}>
-    //       <Input
-    //         placeholder="Name"
-    //         value={name}
-    //         onChange={(e) => setName(e.target.value)}
-    //       />
-    //       <Input
-    //         placeholder="Email"
-    //         value={email}
-    //         onChange={(e) => setEmail(e.target.value)}
-    //       />
-    //       <Input
-    //         type="Password"
-    //         placeholder="Password"
-    //         value={password}
-    //         onChange={(e) => setPassowrd(e.target.value)}
-    //       />
-    //       <button className="btn btn-primary" type="submit">
-    //         Register
-    //       </button>
-    //     </form>
-    //   </div>
-    // </div>
-
     <>
       <AuthForm
         handleSubmit={createUser}
