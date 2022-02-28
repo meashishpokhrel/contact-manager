@@ -33,7 +33,7 @@ const AuthForm = ({
   formData,
   setFormData,
   header,
-  buttonName = "login",
+  buttonName,
 }) => {
   const handleChange = (e, keyName) => {
     let newFormData = { ...formData };

@@ -10,6 +10,8 @@ function Register() {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
 
+  const [formErrors, setFormErrors] = useState("");
+
   const [formData, setFormData] = useState({
     name: { value: "", placeholder: "Name", type: "text" },
     email: { value: "", placeholder: "Email", type: "email" },
@@ -18,6 +20,7 @@ function Register() {
 
   const createUser = (e) => {
     e.preventDefault();
+    setFormErrors(validate(formData));
     const newUser = {
       name: formData.name.value,
       email: formData.email.value,
@@ -30,8 +33,39 @@ function Register() {
     );
   };
 
+  const validate = (formData) => {
+    let name = formData.name.value;
+    let email = formData.email.value;
+    let password = formData.password.value;
+
+    let errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!name) {
+      errors.name = "Username is required! ";
+    }
+    if (!email) {
+      errors.email = "Email is required! ";
+    } else if (!regex.test(email)) {
+      errors.email = "This is not a valid email format! ";
+    }
+    if (!password) {
+      errors.password = "Password is required";
+    } else if (password.length < 4) {
+      errors.password = "Password must be more than 4 characters1 ";
+    } else if (password.length > 10) {
+      errors.password = "Password cannot exceed more than 10 characters! ";
+    }
+    console.log(errors);
+    return errors;
+  };
+
   return (
     <>
+      <p>
+        {Object.values(formErrors).map((x) => {
+          return x;
+        })}
+      </p>
       <AuthForm
         handleSubmit={createUser}
         formData={formData}

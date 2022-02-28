@@ -28,12 +28,6 @@ const ContactForm = ({
               onChange={(e) => handleChange(e, c)}
             />
           ))}
-          {/* <Input
-            type="file"
-            placeholder="Picture"
-            value={photo}
-            onChange={(e) => setPhoto(e.target.value)}
-          /> */}
 
           <button className="btn btn-primary" type="submit">
             {buttonName}

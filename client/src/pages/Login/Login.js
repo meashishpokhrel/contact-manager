@@ -11,6 +11,8 @@ const Login = () => {
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
 
+  const [formErrors, setFormErrors] = useState("");
+
   const [formData, setFormData] = useState({
     email: { value: "", placeholder: "Email", type: "email" },
     password: { value: "", placeholder: "Password", type: "password" },
@@ -18,6 +20,7 @@ const Login = () => {
 
   const loginUser = (e) => {
     e.preventDefault();
+    setFormErrors(validate(formData));
     let email = formData.email.value;
     let password = formData.password.value;
     dispatch(
@@ -27,8 +30,30 @@ const Login = () => {
     );
   };
 
+  const validate = (formData) => {
+    let email = formData.email.value;
+    let password = formData.password.value;
+
+    let errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!email) {
+      errors.email = "Email is required! ";
+    } else if (!regex.test(email)) {
+      errors.email = "This is not a valid email format! ";
+    }
+    if (!password) {
+      errors.password = "Password is required";
+    }
+    return errors;
+  };
+
   return (
     <>
+      <p>
+        {Object.values(formErrors).map((x) => {
+          return x;
+        })}
+      </p>
       <AuthForm
         handleSubmit={loginUser}
         formData={formData}
