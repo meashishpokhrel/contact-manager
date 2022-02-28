@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 
 import { signIn } from "../../redux/actions/auth.action";
 import Input from "../../component/Form-Input/Input";
@@ -23,9 +23,11 @@ const Login = () => {
     setFormErrors(validate(formData));
     let email = formData.email.value;
     let password = formData.password.value;
+
     dispatch(
       signIn(email, password, () => {
         navigate("/contact");
+        // <Link to="/contact" />;
       })
     );
   };

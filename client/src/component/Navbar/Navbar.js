@@ -35,7 +35,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link to="/contact" className="navbar-brand">
+            <Link to="/" className="navbar-brand">
               Contact Manager
             </Link>
             <Link to="/signin" className="btn btn-primary button-nav">
