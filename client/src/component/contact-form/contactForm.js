@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../Form-Input/Input";
 
-const ContactForm = () => {
+const ContactForm = ({}) => {
   return (
     <div className="card border-0 shadow">
       <div className="card-header">Add new Contact</div>
