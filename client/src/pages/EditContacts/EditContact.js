@@ -59,6 +59,7 @@ const Editcontact = () => {
         setFormData={setFormData}
         header={"Edit Your Contact"}
         buttonName={"Edit Contact"}
+        errors={""}
       />
     </>
   );

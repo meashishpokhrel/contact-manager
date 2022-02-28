@@ -20,15 +20,14 @@ const Login = () => {
 
   const loginUser = (e) => {
     e.preventDefault();
+    console.log("hitting t");
     setFormErrors(validate(formData));
     let email = formData.email.value;
     let password = formData.password.value;
-
+    console.log(email, password);
     dispatch(
       signIn(email, password, () => {
-        console.log("hitting t");
         navigate("/contact");
-
         // <Link to="/contact" />;
       })
     );

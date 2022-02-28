@@ -62,17 +62,13 @@ const Addcontact = () => {
 
   return (
     <>
-      <p>
-        {Object.values(formErrors).map((x) => {
-          return x;
-        })}
-      </p>
       <ContactForm
         handleSubmit={createContact}
         formData={formData}
         setFormData={setFormData}
         header={"Add New Contact"}
         buttonName={"Add Contact"}
+        errors={formErrors}
       />
     </>
   );

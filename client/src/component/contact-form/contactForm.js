@@ -7,6 +7,7 @@ const ContactForm = ({
   setFormData,
   header,
   buttonName,
+  errors,
 }) => {
   const handleChange = (e, keyName) => {
     let newFormData = { ...formData };
@@ -26,6 +27,7 @@ const ContactForm = ({
               type={formData[c].type}
               value={formData[c].value}
               onChange={(e) => handleChange(e, c)}
+              error={errors[c]}
             />
           ))}
 
