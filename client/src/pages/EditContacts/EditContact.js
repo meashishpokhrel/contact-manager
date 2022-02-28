@@ -9,6 +9,7 @@ import {
 import shortid from "shortid";
 import { useParams, useNavigate } from "react-router-dom";
 import Input from "../../component/Form-Input/Input";
+import AuthForm from "../../component/auth-form/authForm";
 
 const Editcontact = () => {
   let { id } = useParams();
@@ -85,6 +86,10 @@ const Editcontact = () => {
         </form>
       </div>
     </div>
+
+    //  <ContactForm
+    //  onchange={} value={} placeholder={}
+    //  />
   );
 };
 
