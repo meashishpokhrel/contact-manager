@@ -1,3 +1,7 @@
+const {
+  uploadContactPhoto,
+  getContactPhotoUrl,
+} = require("../utils/photoUpload.js");
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
@@ -21,12 +25,22 @@ router.get("/:id", auth, contactController.getOneContact);
 router.post(
   "/",
   auth,
-  validator,
+  uploadContactPhoto,
+  getContactPhotoUrl,
   contactValidation,
+  validator,
   contactController.createContact
 );
 
-router.put("/:id", auth, contactController.updateContact);
+router.put(
+  "/:id",
+  auth,
+  uploadContactPhoto,
+  getContactPhotoUrl,
+  contactValidation,
+  validator,
+  contactController.updateContact
+);
 
 router.delete("/:id", auth, contactController.deleteContact);
 

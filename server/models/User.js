@@ -1,20 +1,26 @@
-const mongoose = require("mongoose")
-
+const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
-  name:{
+  name: {
     type: String,
     required: true,
   },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-})
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+});
 
-module.exports = mongoose.model("user", UserSchema)
+// UserSchema.methods.getSignedToken = (id) => {
+//   const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
+//     expiresIn: process.env.JWT_EXPIRE,
+//   });
+//   return token;
+// };
+
+module.exports = mongoose.model("user", UserSchema);

@@ -25,9 +25,11 @@ const createContact = async (req, res) => {
   const { name, email, phone, photo, address, favourite } = req.body;
   try {
     const checkContact = await Contact.findOne({ phone: req.body.phone });
+
     if (checkContact) {
       return res.status(400).json({ msg: "Phone NUmber Exists" });
     }
+
     const newContact = new Contact({
       user: req.user._id,
       name,
@@ -41,7 +43,7 @@ const createContact = async (req, res) => {
     res.json(contact);
   } catch (err) {
     console.error(err.message);
-    res.status(501).json({ msg: "Server Failed !" });
+    res.status(501).json({ msg: "Server Failed from Get!" });
   }
 };
 
