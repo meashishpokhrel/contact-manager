@@ -22,7 +22,6 @@ exports.uploadContactPhoto = (req, res, next) => {
       console.log("Not WOrking");
       return res.status(422).send({ message: "Image upload fail!" });
     }
-
     next();
   });
 };

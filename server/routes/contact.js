@@ -25,8 +25,8 @@ router.get("/:id", auth, contactController.getOneContact);
 router.post(
   "/",
   auth,
-  uploadContactPhoto,
-  getContactPhotoUrl,
+  // uploadContactPhoto,
+  // getContactPhotoUrl,
   contactValidation,
   validator,
   contactController.createContact
@@ -35,8 +35,8 @@ router.post(
 router.put(
   "/:id",
   auth,
-  uploadContactPhoto,
-  getContactPhotoUrl,
+  // uploadContactPhoto,
+  // getContactPhotoUrl,
   contactValidation,
   validator,
   contactController.updateContact

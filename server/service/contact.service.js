@@ -15,6 +15,73 @@ const Contact = require("../models/Contact");
 //   }
 // };
 
+const getContacts = async (userID) => {
+  try {
+    const contacts = await Contact.find({ user: userID }).sort({
+      createdAt: -1,
+    });
+    return contacts;
+  } catch (err) {
+    console.error(err.message);
+    throw { msg: err.message };
+  }
+};
+
+const getOneContact = async (id) => {
+  try {
+    const contacts = await Contact.findById(id);
+    return contacts;
+  } catch (err) {
+    throw { message: err.message };
+  }
+};
+const createContact = async (userID, contactDetail) => {
+  const { name, email, phone, photo, address, favourite } = contactDetail;
+  try {
+    const checkContact = await Contact.findOne({ phone });
+
+    if (checkContact) {
+      throw { message: "Phone Number Exists" };
+    }
+
+    const newContact = new Contact({
+      user: userID,
+      name,
+      email,
+      phone,
+      photo,
+      address,
+      favourite,
+    });
+    const contact = await newContact.save();
+    return contact;
+  } catch (err) {
+    console.error(err.message);
+    throw { message: "Server Failed from Get!" };
+  }
+};
+
+const deleteContact = async (id, userID) => {
+  try {
+    const contact = await Contact.findById(id);
+    if (!contact) {
+      throw {
+        message: "Contact not found.",
+      };
+    }
+    if (contact && contact.user.toString() !== userID) {
+      throw {
+        message: "Unauthorized.",
+      };
+    }
+
+    await Contact.findByIdAndRemove(id);
+    throw { message: "Deleted Successfully !" };
+  } catch (err) {
+    console.error(err.message);
+    throw { message: "Server Error" };
+  }
+};
 const updateContact = async (id, userID, updateContact) => {
   try {
     const contact = await Contact.findById(id);
@@ -47,5 +114,9 @@ const updateContact = async (id, userID, updateContact) => {
 };
 
 module.exports = {
+  getContacts,
+  getOneContact,
+  createContact,
+  deleteContact,
   updateContact,
 };

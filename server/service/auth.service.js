@@ -16,6 +16,33 @@ const loginUser = async (email, password) => {
   }
 };
 
+const registerUser = async (name, email, password) => {
+  try {
+    let user = await User.findOne({ email });
+    if (user) {
+      throw { msg: "Email already Exists !" };
+    }
+    const newUser = new User({
+      name,
+      email,
+      password,
+    });
+
+    //Before saving it in the Database, hasing or encrypting the password using bcrypt
+    const salt = await bcrypt.genSalt(10); //gensalt method that bcrypt provides, 10 round is default one
+    newUser.password = await bcrypt.hash(password, salt);
+    await newUser.save();
+
+    const token = newUser.getSignedToken(newUser);
+
+    return token;
+  } catch (err) {
+    console.error(err.message);
+    throw { msg: "Server Error" };
+  }
+};
+
 module.exports = {
   loginUser,
+  registerUser,
 };
