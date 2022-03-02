@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+
+const jwtKey = process.env.jwtKey;
 
 const UserSchema = mongoose.Schema({
   name: {
@@ -16,11 +19,15 @@ const UserSchema = mongoose.Schema({
   },
 });
 
-// UserSchema.methods.getSignedToken = (id) => {
-//   const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
-//     expiresIn: process.env.JWT_EXPIRE,
-//   });
-//   return token;
-// };
+UserSchema.methods.getSignedToken = (user) => {
+  const token = jwt.sign(
+    { _id: user._id, name: user.name, email: user.email },
+    jwtKey,
+    {
+      expiresIn: 480000,
+    }
+  );
+  return token;
+};
 
 module.exports = mongoose.model("user", UserSchema);

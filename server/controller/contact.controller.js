@@ -1,5 +1,7 @@
 const Contact = require("../models/Contact");
 
+const ContactService = require("../service/contact.service");
+
 const getContacts = async (req, res) => {
   try {
     const contacts = await Contact.find({ user: req.user._id }).sort({
@@ -71,27 +73,32 @@ const deleteContact = async (req, res) => {
 
 const updateContact = async (req, res) => {
   try {
-    const contact = await Contact.findById(req.params.id);
-    if (!contact) {
-      return res.status(404).json({
-        msg: "Contact not found.",
-      });
-    }
-    if (contact && contact.user.toString() !== req.user._id) {
-      return res.status(401).json({
-        msg: "Unauthorized.",
-      });
-    }
-    const isDuplicate = await Contact.findOne({ phone: req.body.phone });
-    if (isDuplicate && isDuplicate.user.toString() !== req.user._id) {
-      return res.status(400).json({
-        mesg: "Phone number already exists.",
-      });
-    }
-    const updatedContact = await Contact.findByIdAndUpdate(
+    // const contact = await Contact.findById(req.params.id);
+    // if (!contact) {
+    //   return res.status(404).json({
+    //     msg: "Contact not found.",
+    //   });
+    // }
+    // if (contact && contact.user.toString() !== req.user._id) {
+    //   return res.status(401).json({
+    //     msg: "Unauthorized.",
+    //   });
+    // }
+    // const isDuplicate = await Contact.findOne({ phone: req.body.phone });
+    // if (isDuplicate && isDuplicate.user.toString() !== req.user._id) {
+    //   return res.status(400).json({
+    //     mesg: "Phone number already exists.",
+    //   });
+    // }
+    // const updatedContact = await Contact.findByIdAndUpdate(
+    //   req.params.id,
+    //   req.body,
+    //   { new: true }
+    // );
+    const updatedContact = await ContactService.updateContact(
       req.params.id,
-      req.body,
-      { new: true }
+      req.user._id,
+      req.body
     );
     return res.json(updatedContact);
   } catch (err) {

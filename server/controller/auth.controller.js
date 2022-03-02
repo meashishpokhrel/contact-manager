@@ -1,31 +1,11 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-
-const jwtKey = process.env.jwtKey;
+const AuthService = require("../service/auth.service");
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
-    let user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(400).json({ msg: "Invalid Credentials !" });
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ msg: "Invalid Credentials ! " });
-    }
-
-    const token = jwt.sign(
-      { _id: user._id, name: user.name, email: user.email },
-      jwtKey,
-      {
-        expiresIn: 480000,
-      }
-    );
-
+    const token = await AuthService.loginUser(email, password);
     return res.send(token);
   } catch (err) {
     console.error(err?.message);
@@ -41,7 +21,7 @@ const registerUser = async (req, res) => {
     if (user) {
       return res.status(400).json({ msg: "Email already Exists !" });
     }
-    user = new User({
+    const newUser = new User({
       name,
       email,
       password,
@@ -49,13 +29,10 @@ const registerUser = async (req, res) => {
 
     //Before saving it in the Database, hasing or encrypting the password using bcrypt
     const salt = await bcrypt.genSalt(10); //gensalt method that bcrypt provides, 10 round is default one
-    user.password = await bcrypt.hash(password, salt);
-    await user.save();
+    newUser.password = await bcrypt.hash(password, salt);
+    await newUser.save();
 
-    const token = jwt.sign(
-      { _id: user._id, name: user.name, email: user.email },
-      jwtKey
-    );
+    const token = newUser.getSignedToken(newUser);
 
     return res.send(token);
   } catch (err) {
