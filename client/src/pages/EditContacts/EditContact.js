@@ -23,6 +23,7 @@ const Editcontact = () => {
     email: { value: "", placeholder: "Email", type: "email" },
     phone: { value: "", placeholder: "Phone", type: "text" },
     address: { value: "", placeholder: "Address", type: "text" },
+    photo: { value: "", placeholder: "Address", type: "file" },
   });
 
   const state = useEffect(() => {
@@ -32,6 +33,7 @@ const Editcontact = () => {
       newForm.email.value = contact.email;
       newForm.phone.value = contact.phone;
       newForm.address.value = contact.address;
+      newForm.address.photo = contact.photo;
       setFormData(newForm);
     }
   }, [contact]);
@@ -47,6 +49,7 @@ const Editcontact = () => {
       address: formData.address.value,
       phone: formData.phone.value,
       email: formData.email.value,
+      photo: formData.photo.value,
     });
     dispatch(editContact(editedContact, editedContact._id));
     navigate("/contact");

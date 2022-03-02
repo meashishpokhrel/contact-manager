@@ -28,13 +28,17 @@ exports.uploadContactPhoto = (req, res, next) => {
 
 exports.getContactPhotoUrl = async (req, res, next) => {
   try {
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      width: 500,
-      height: 500,
-      crop: "fill",
-    });
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        width: 500,
+        height: 500,
+        crop: "fill",
+      });
+      req.body.photo = result.url;
+    }
+
     // console.log(result);
-    req.body.photo = result.url;
+
     next();
   } catch (err) {
     next({

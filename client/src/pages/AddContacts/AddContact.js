@@ -16,6 +16,7 @@ const Addcontact = () => {
     email: { value: "", placeholder: "Email", type: "email" },
     phone: { value: "", placeholder: "Phone", type: "text" },
     address: { value: "", placeholder: "Address", type: "text" },
+    photo: { value: "", placeholder: "photo", type: "file" },
   });
 
   const createContact = (e) => {
@@ -26,6 +27,7 @@ const Addcontact = () => {
       name: formData.name.value,
       email: formData.email.value,
       phone: formData.phone.value,
+      photo: formData.photo.value,
       address: formData.address.value,
     };
     if (newContact.name && newContact.phone) {
@@ -39,6 +41,7 @@ const Addcontact = () => {
     let email = formData.email.value;
     let phone = formData.phone.value;
     let address = formData.address.value;
+    // let photo = formData.photo.value;
 
     let errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;

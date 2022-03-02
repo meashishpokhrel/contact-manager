@@ -12,12 +12,7 @@ const Contact = ({ contact }) => {
     <tr>
       {/* <th scope="row">{contact._id}</th> */}
       <td>
-        <Avatar
-          src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile.png"
-          size="38"
-          round={true}
-        />{" "}
-        {contact.name}
+        <Avatar src={contact.photo} size="38" round={true} /> {contact.name}
       </td>
       <td>{contact.email}</td>
       <td>{contact.phone}</td>
