@@ -27,7 +27,7 @@ const createContact = async (req, res) => {
     res.json(contact);
   } catch (err) {
     console.error(err.message);
-    res.status(501).json({ message: "Server Failed from Get!" });
+    res.status(501).json({ message: err.message });
   }
 };
 
@@ -37,7 +37,7 @@ const deleteContact = async (req, res) => {
     return res.status(200).json({ message: "Deleted Successfully !" });
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ message: "Server Error from delete" });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -51,7 +51,7 @@ const updateContact = async (req, res) => {
     return res.json(updatedContact);
   } catch (err) {
     console.error(err.message);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: err.message });
   }
 };
 

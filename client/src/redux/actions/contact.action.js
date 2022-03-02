@@ -25,7 +25,7 @@ export const addContact = (contact) => {
         });
       })
       .catch((error) => {
-        toast.error(error.response?.data?.msg, {
+        toast.error(error.response?.data?.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });
@@ -45,7 +45,7 @@ export const getContact = () => {
         });
       })
       .catch((error) => {
-        toast.error(error.response?.data?.msg, {
+        toast.error(error.response?.data?.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });
@@ -64,7 +64,7 @@ export const getOneContact = (id) => {
         });
       })
       .catch((error) => {
-        toast.error(error.response?.data?.msg, {
+        toast.error(error.response?.data?.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });
@@ -84,7 +84,7 @@ export const editContact = (updatedContact, id) => {
         });
       })
       .catch((error) => {
-        toast.error(error.response?.data?.msg, {
+        toast.error(error.response?.data?.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });
@@ -107,7 +107,7 @@ export const deleteContact = (id) => {
         });
       })
       .catch((error) => {
-        toast.error(error.response?.data?.msg, {
+        toast.error(error.response?.data?.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });

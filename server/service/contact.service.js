@@ -41,7 +41,7 @@ const createContact = async (userID, contactDetail) => {
     const checkContact = await Contact.findOne({ phone });
 
     if (checkContact) {
-      throw { message: "Phone Number Exists" };
+      throw { message: "Contact already created with Same Number! " };
     }
 
     const newContact = new Contact({
@@ -57,7 +57,7 @@ const createContact = async (userID, contactDetail) => {
     return contact;
   } catch (err) {
     console.error(err.message);
-    throw { message: "Server Failed from Get!" };
+    throw { message: err.message };
   }
 };
 
@@ -75,8 +75,8 @@ const deleteContact = async (id, userID) => {
       };
     }
 
-    await Contact.findByIdAndRemove(id);
-    throw { message: "Deleted Successfully !" };
+    return await Contact.findByIdAndRemove(id);
+    // throw { message: "Deleted Successfully !" };
   } catch (err) {
     console.error(err.message);
     throw { message: "Server Error" };
