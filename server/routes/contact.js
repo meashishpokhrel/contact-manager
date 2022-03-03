@@ -27,8 +27,8 @@ router.post(
   auth,
   uploadContactPhoto,
   getContactPhotoUrl,
-  contactValidation,
-  validator,
+  // contactValidation,
+  // validator,
   contactController.createContact
 );
 
@@ -37,8 +37,8 @@ router.put(
   auth,
   uploadContactPhoto,
   getContactPhotoUrl,
-  contactValidation,
-  validator,
+  // contactValidation,
+  // validator,
   contactController.updateContact
 );
 

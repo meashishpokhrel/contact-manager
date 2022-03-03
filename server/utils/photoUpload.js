@@ -28,8 +28,8 @@ exports.uploadContactPhoto = (req, res, next) => {
 
 exports.getContactPhotoUrl = async (req, res, next) => {
   try {
-    if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path, {
+    if (req.body.photo) {
+      const result = await cloudinary.uploader.upload(req.body.photo, {
         width: 500,
         height: 500,
         crop: "fill",

@@ -1,32 +1,6 @@
 import React from "react";
 import Input from "../Form-Input/Input";
-
-// const AuthForm = (props) => {
-//   return (
-//     <div className="card border-0 shadow">
-//       <div className="card-header">{props.header}</div>
-//       <div className="card-body">
-//         <form onSubmit={(e) => loginUser(e)}>
-//           <Input
-//             placeholder="Email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//           />
-//           <Input
-//             type="Password"
-//             placeholder="Password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-
-//           <button className="btn btn-primary" type="submit">
-//             Login
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
+import "./authForm.scss";
 
 const AuthForm = ({
   handleSubmit,
@@ -43,9 +17,9 @@ const AuthForm = ({
   };
 
   return (
-    <div className="card border-0 shadow">
-      <div className="card-header">{header}</div>
-      <div className="card-body">
+    <div className="auth-form-container">
+      <div className="form-header">{header}</div>
+      <div className="">
         <form onSubmit={(e) => handleSubmit(e)}>
           {Object.keys(formData).map((c, index) => (
             <Input
@@ -58,7 +32,7 @@ const AuthForm = ({
             />
           ))}
 
-          <button className="btn btn-primary" type="submit">
+          <button className="" type="submit">
             {buttonName}
           </button>
         </form>

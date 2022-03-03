@@ -16,7 +16,7 @@ const Addcontact = () => {
     email: { value: "", placeholder: "Email", type: "email" },
     phone: { value: "", placeholder: "Phone", type: "text" },
     address: { value: "", placeholder: "Address", type: "text" },
-    photo: { value: "", placeholder: "photo", type: "file" },
+    photo: { defaultValue: "", placeholder: "photo", type: "file" },
   });
 
   const createContact = (e) => {
@@ -27,7 +27,7 @@ const Addcontact = () => {
       name: formData.name.value,
       email: formData.email.value,
       phone: formData.phone.value,
-      photo: formData.photo.value,
+      photo: formData.photo.defaultValue,
       address: formData.address.value,
     };
     if (newContact.name && newContact.phone) {
