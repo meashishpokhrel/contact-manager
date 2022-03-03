@@ -9,6 +9,7 @@ import {
   EDIT_CONTACT,
   DELETE_CONTACT,
   GET_ONE_CONTACT,
+  LOADING_CONTACT,
 } from "../constant/types";
 
 export const addContact = (contact) => {

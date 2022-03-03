@@ -35,6 +35,8 @@ exports.getContactPhotoUrl = async (req, res, next) => {
         crop: "fill",
       });
       req.body.photo = result.url;
+    } else {
+      req.body.photo = "";
     }
 
     // console.log(result);

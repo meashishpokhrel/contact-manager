@@ -5,14 +5,26 @@ import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 
 const Contact = ({ contact }) => {
-  const { _id } = contact;
+  const { _id, photo } = contact;
   const dispatch = useDispatch();
 
   return (
     <tr>
       {/* <th scope="row">{contact._id}</th> */}
       <td>
-        <Avatar src={contact.photo} size="38" round={true} /> {contact.name}
+        {photo !== "" ? (
+          <Avatar src={contact.photo} size="38" round={true} />
+        ) : (
+          <Avatar
+            src={
+              "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+            }
+            size="38"
+            round={true}
+          />
+        )}
+        {/* <Avatar src={contact.photo} size="38" round={true} /> */}
+        {contact.name}
       </td>
       <td>{contact.email}</td>
       <td>{contact.phone}</td>
