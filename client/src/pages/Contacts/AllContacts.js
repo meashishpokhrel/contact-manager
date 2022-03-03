@@ -5,6 +5,7 @@ import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
 import Contact from "../../component/contact/Contact";
 import { getContact } from "../../redux/actions/contact.action";
+import "./AllContacts.scss";
 
 const AllContacts = () => {
   const dispatch = useDispatch();
@@ -29,24 +30,13 @@ const AllContacts = () => {
   }, [dispatch]);
 
   return (
-    <table className="table table-dark">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>Favourite</th>
-          <th>Edit</th>
-          <th>Remove</th>
-        </tr>
-      </thead>
-      <tbody>
+    <>
+      <div className="card-list">
         {[...favouriteContacts, ...restContacts].map((contact) => (
           <Contact contact={contact} key={contact._id} />
         ))}
-      </tbody>
-    </table>
+      </div>
+    </>
   );
 };
 

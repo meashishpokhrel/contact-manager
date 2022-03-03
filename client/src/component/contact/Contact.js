@@ -3,34 +3,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteContact, editContact } from "../../redux/actions/contact.action";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
+import "./Contact.scss";
 
 const Contact = ({ contact }) => {
   const { _id, photo } = contact;
   const dispatch = useDispatch();
 
   return (
-    <tr>
-      {/* <th scope="row">{contact._id}</th> */}
-      <td>
+    // <div className="card-container">
+    <div className="card">
+      <div className="card__body">
         {photo !== "" ? (
-          <Avatar src={contact.photo} size="38" round={true} />
+          <img src={contact.photo} className="card__image" />
         ) : (
-          <Avatar
+          <img
             src={
               "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
             }
-            size="38"
-            round={true}
+            className="card__image"
           />
         )}
-        {/* <Avatar src={contact.photo} size="38" round={true} /> */}
-        {contact.name}
-      </td>
-      <td>{contact.email}</td>
-      <td>{contact.phone}</td>
-      <td>{contact.address}</td>
-      <td>
+
         <div className="custom-control custom-checbox">
+          <h2 className="card__title">{contact.name}</h2>
           <input
             type="checkbox"
             className="custom-control-input"
@@ -46,22 +41,29 @@ const Contact = ({ contact }) => {
           />
           <label className="custom-control-label"></label>
         </div>
-      </td>
-      <td>
-        <Link to={`/contact/edit/${contact._id}`}>
-          <span className="material-icons">edit</span>
-        </Link>
-      </td>
-      <td>
-        <span
-          type="button"
-          className="material-icons text-danger"
-          onClick={() => dispatch(deleteContact(_id))}
-        >
-          delete
-        </span>
-      </td>
-    </tr>
+        <div className="card-details-wrapper">
+          <div className="card-details">
+            <p className="card__description">Email: {contact.email}</p>
+            <p className="card__description">Phone: {contact.phone}</p>
+            <p className="card__description">Address: {contact.address}</p>
+          </div>
+        </div>
+        <div className="card-actions">
+          <Link to={`/contact/edit/${contact._id}`}>
+            <div className="material-icons">edit</div>
+          </Link>
+
+          <div
+            type="button"
+            className="material-icons text-danger"
+            onClick={() => dispatch(deleteContact(_id))}
+          >
+            delete
+          </div>
+        </div>
+      </div>
+    </div>
+    // </div>
   );
 };
 
