@@ -35,7 +35,7 @@ const AuthForm = ({
             />
           ))}
           <div className="field btn">
-            <div className="btn-layer"></div>
+            <div className=" btn-layer"></div>
             <input type="submit" value={buttonName}></input>
           </div>
         </form>

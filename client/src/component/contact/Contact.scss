@@ -59,10 +59,13 @@ body {
     padding: 1rem;
     text-align: center;
     display: inline;
+    font-size: 20px;
   }
 
   &__description {
-    padding: 0 1rem;
+    // padding: 0 1rem;
+
+    font-size: 12px;
   }
 
 
@@ -75,20 +78,20 @@ body {
 .card-actions{
   // float: right;
   display: block;
-  margin-right: 50px;
+  margin-left: 197px;
 
 }
 .material-icons{
   display: block;
   margin-bottom: 20px;
-  font-size: 25px;
+  font-size: 19px;
   margin-left: 50px;
 }
 
 .card-details{
   float: left;
   margin-left: 20px;
-  margin-right: 58px;
+  // margin-right: 58px;
 }
 .card-detail-wrapper{
   display: flex;
