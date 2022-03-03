@@ -6,13 +6,13 @@ const loginUser = async (email, password) => {
     let user = await User.findOne({ email });
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      throw { msg: "Invalid Credentials !" };
+      throw { message: "Invalid Credentials !" };
     }
     const token = user.getSignedToken(user);
     return token;
   } catch (err) {
     console.error(err?.message);
-    throw { msg: "IServer Error !" };
+    throw { message: err?.message };
   }
 };
 
@@ -20,7 +20,7 @@ const registerUser = async (name, email, password) => {
   try {
     let user = await User.findOne({ email });
     if (user) {
-      throw { msg: "Email already Exists !" };
+      throw { message: "Email already Exists !" };
     }
     const newUser = new User({
       name,
@@ -38,7 +38,7 @@ const registerUser = async (name, email, password) => {
     return token;
   } catch (err) {
     console.error(err.message);
-    throw { msg: "Server Error" };
+    throw { message: err.message };
   }
 };
 

@@ -20,7 +20,7 @@ export const addUser = (user) => {
         });
       })
       .catch((error) => {
-        toast.error(error.response?.data?.err[0].msg, {
+        toast.error(error.response?.data?.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });
@@ -41,7 +41,7 @@ export const signIn = (email, password, callback) => {
         callback();
       })
       .catch((error) => {
-        toast.error(error.response?.data.msg, {
+        toast.error(error.response?.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       });

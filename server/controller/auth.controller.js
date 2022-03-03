@@ -8,8 +8,8 @@ const loginUser = async (req, res) => {
     const token = await AuthService.loginUser(email, password);
     return res.send(token);
   } catch (err) {
-    console.error(err?.message);
-    res.status(500).send("server error !");
+    console.error(err);
+    res.status(500).json({ message: "Invalid Authentication" });
   }
 };
 
@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
     return res.send(token);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send({ message: "Server Error" });
+    res.status(500).json({ message: err.message });
   }
 };
 
