@@ -12,11 +12,21 @@ const Addcontact = () => {
   const [formErrors, setFormErrors] = useState("");
 
   const [formData, setFormData] = useState({
-    name: { value: "", placeholder: "Name", type: "text" },
-    email: { value: "", placeholder: "Email", type: "email" },
-    phone: { value: "", placeholder: "Phone", type: "text" },
-    address: { value: "", placeholder: "Address", type: "text" },
-    photo: { defaultValue: "", placeholder: "photo", type: "file" },
+    name: { value: "", placeholder: "Name", type: "text", label: "Name" },
+    email: { value: "", placeholder: "Email", type: "email", label: "Email" },
+    phone: { value: "", placeholder: "Phone", type: "text", label: "Phone" },
+    address: {
+      value: "",
+      placeholder: "Address",
+      type: "text",
+      label: "Address",
+    },
+    photo: {
+      defaultValue: "",
+      placeholder: "photo",
+      type: "file",
+      label: "Profile Picture",
+    },
   });
 
   const createContact = (e) => {

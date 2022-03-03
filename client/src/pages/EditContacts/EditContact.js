@@ -19,11 +19,36 @@ const Editcontact = () => {
   const contact = useSelector((state) => state.contact.contact);
 
   const [formData, setFormData] = useState({
-    name: { value: "", placeholder: "Name", type: "text" },
-    email: { value: "", placeholder: "Email", type: "email" },
-    phone: { value: "", placeholder: "Phone", type: "text" },
-    address: { value: "", placeholder: "Address", type: "text" },
-    photo: { defaultValue: "", placeholder: "Address", type: "file" },
+    name: {
+      value: "",
+      placeholder: "Name",
+      type: "text",
+      label: "Update Name",
+    },
+    email: {
+      value: "",
+      placeholder: "Email",
+      type: "email",
+      label: "Update Email",
+    },
+    phone: {
+      value: "",
+      placeholder: "Phone",
+      type: "text",
+      label: "Update Phone",
+    },
+    address: {
+      value: "",
+      placeholder: "Address",
+      type: "text",
+      label: "Update Address",
+    },
+    photo: {
+      defaultValue: "",
+      placeholder: "Address",
+      type: "file",
+      label: "Update Picture",
+    },
   });
 
   const state = useEffect(() => {

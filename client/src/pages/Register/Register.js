@@ -70,7 +70,7 @@ function Register() {
         handleSubmit={createUser}
         formData={formData}
         setFormData={setFormData}
-        header={"New User ? Register Please !"}
+        header={"Register!"}
         buttonName={"Register"}
         errors={formErrors}
       />

@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../Form-Input/Input";
+import "./contactForm.scss";
 
 const ContactForm = ({
   handleSubmit,
@@ -27,9 +28,9 @@ const ContactForm = ({
   };
 
   return (
-    <div className="card border-0 shadow">
-      <div className="card-header">{header}</div>
-      <div className="card-body">
+    <div className="contact-wrapper">
+      <div className="title login">{header}</div>
+      <div className="contact-form-inner">
         <form onSubmit={(e) => handleSubmit(e)}>
           {Object.keys(formData).map((c, index) => (
             <Input
@@ -37,14 +38,16 @@ const ContactForm = ({
               placeholder={formData[c].placeholder}
               type={formData[c].type}
               value={formData[c].value}
+              label={formData[c].label}
               onChange={(e) => handleChange(e, c)}
               error={errors[c]}
             />
           ))}
 
-          <button className="btn btn-primary" type="submit">
-            {buttonName}
-          </button>
+          <div className="field btn">
+            <div className="btn-layer"></div>
+            <input type="submit" value={buttonName}></input>
+          </div>
         </form>
       </div>
     </div>

@@ -19,10 +19,10 @@ const AuthForm = ({
   };
 
   return (
-    <div className="card border-0 shadow">
-      <div className="card-header">{header}</div>
-      <div className="card-body">
-        <form onSubmit={(e) => handleSubmit(e)}>
+    <div className="wrapper">
+      <div className="title login">{header}</div>
+      <div className="form-inner">
+        <form className="login" onSubmit={(e) => handleSubmit(e)}>
           {Object.keys(formData).map((c, index) => (
             <Input
               key={index}
@@ -34,10 +34,10 @@ const AuthForm = ({
               label={formData[c].label}
             />
           ))}
-
-          <button className="" type="submit">
-            {buttonName}
-          </button>
+          <div className="field btn">
+            <div className="btn-layer"></div>
+            <input type="submit" value={buttonName}></input>
+          </div>
         </form>
       </div>
     </div>
