@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate, Link } from "react-router-dom";
 import Input from "../Form-Input/Input";
 import "./authForm.scss";
 
@@ -9,6 +10,7 @@ const AuthForm = ({
   header,
   buttonName,
   errors,
+  label,
 }) => {
   const handleChange = (e, keyName) => {
     let newFormData = { ...formData };
@@ -17,9 +19,9 @@ const AuthForm = ({
   };
 
   return (
-    <div className="auth-form-container">
-      <div className="form-header">{header}</div>
-      <div className="">
+    <div className="card border-0 shadow">
+      <div className="card-header">{header}</div>
+      <div className="card-body">
         <form onSubmit={(e) => handleSubmit(e)}>
           {Object.keys(formData).map((c, index) => (
             <Input
@@ -29,6 +31,7 @@ const AuthForm = ({
               value={formData[c].value}
               onChange={(e) => handleChange(e, c)}
               error={errors[c]}
+              label={formData[c].label}
             />
           ))}
 

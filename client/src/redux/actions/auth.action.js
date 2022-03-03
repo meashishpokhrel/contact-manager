@@ -27,7 +27,7 @@ export const addUser = (user) => {
   };
 };
 
-export const signIn = (email, password) => {
+export const signIn = (email, password, callback) => {
   return (dispatch) => {
     axios
       .post(`${url}/auth/login`, { email, password })
@@ -38,6 +38,7 @@ export const signIn = (email, password) => {
           type: SIGNIN_USER,
           token: token.data,
         });
+        callback();
       })
       .catch((error) => {
         toast.error(error.response?.data.msg, {

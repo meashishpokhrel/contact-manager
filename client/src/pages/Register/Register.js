@@ -13,9 +13,14 @@ function Register() {
   const [formErrors, setFormErrors] = useState("");
 
   const [formData, setFormData] = useState({
-    name: { value: "", placeholder: "Name", type: "text" },
-    email: { value: "", placeholder: "Email", type: "email" },
-    password: { value: "", placeholder: "Password", type: "password" },
+    name: { value: "", placeholder: "Name", type: "text", label: "Name" },
+    email: { value: "", placeholder: "Email", type: "email", label: "Email" },
+    password: {
+      value: "",
+      placeholder: "Password",
+      type: "password",
+      label: "Password",
+    },
   });
 
   const createUser = (e) => {

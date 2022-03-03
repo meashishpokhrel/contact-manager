@@ -14,8 +14,13 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState("");
 
   const [formData, setFormData] = useState({
-    email: { value: "", placeholder: "Email", type: "email" },
-    password: { value: "", placeholder: "Password", type: "password" },
+    email: { value: "", placeholder: "Email", type: "email", label: "Email" },
+    password: {
+      value: "",
+      placeholder: "Password",
+      type: "password",
+      label: "Password",
+    },
   });
 
   const loginUser = (e) => {
@@ -24,11 +29,9 @@ const Login = () => {
     setFormErrors(validate(formData));
     let email = formData.email.value;
     let password = formData.password.value;
-    console.log(email, password);
     dispatch(
       signIn(email, password, () => {
         navigate("/contact");
-        // <Link to="/contact" />;
       })
     );
   };

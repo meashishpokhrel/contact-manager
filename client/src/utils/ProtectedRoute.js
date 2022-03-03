@@ -10,9 +10,8 @@ import {
 const ProtectedRoute = ({ children }) => {
   const auth = useSelector((states) => states.auth);
   if (!auth.token) {
-    return <Navigate to="/home" />;
-  }
-  return children;
+    return <Navigate to="/" />;
+  } else return children;
 };
 
 export default ProtectedRoute;
