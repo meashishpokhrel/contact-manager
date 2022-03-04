@@ -9,7 +9,7 @@ import {
 
 const url = process.env.REACT_APP_URL;
 
-export const addUser = (user) => {
+export const addUser = (user, callback) => {
   return (dispatch) => {
     axios
       .post(`${url}/auth/register`, user)
@@ -19,6 +19,7 @@ export const addUser = (user) => {
           type: CREATE_USER,
           token: token.data,
         });
+        callback();
       })
       .catch((error) => {
         toast.error(error.response?.data?.message, {
