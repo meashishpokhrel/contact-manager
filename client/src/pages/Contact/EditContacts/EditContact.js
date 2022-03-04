@@ -5,12 +5,12 @@ import {
   getContact,
   editContact,
   getOneContact,
-} from "../../redux/actions/contact.action";
+} from "../../../redux/actions/contact.action";
 import shortid from "shortid";
 import { useParams, useNavigate } from "react-router-dom";
-import Input from "../../component/Form-Input/Input";
-import AuthForm from "../../component/auth-form/authForm";
-import ContactForm from "../../component/contact-form/contactForm";
+import Input from "../../../component/Form-Input/Input";
+import AuthForm from "../../../component/Authentication/Auth-Form/AuthForm";
+import ContactForm from "../../../component/Contacts/Contact-Form/contactForm";
 
 const Editcontact = () => {
   let { id } = useParams();

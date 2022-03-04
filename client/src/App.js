@@ -1,5 +1,5 @@
 import "./assets/styles/App.scss";
-import Contact from "./pages/Contacts/AllContacts";
+import Contact from "./pages/Contact/Contacts/AllContacts";
 import Navbar from "./component/Navbar/Navbar";
 import { Provider, useSelector } from "react-redux";
 import {
@@ -8,11 +8,11 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Addcontact from "./pages/AddContacts/AddContact";
-import Editcontact from "./pages/EditContacts/EditContact";
+import Addcontact from "./pages/Contact/AddContacts/AddContact";
+import Editcontact from "./pages/Contact/EditContacts/EditContact";
 import HomePage from "./pages/HomePage/HomePage";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
+import Login from "./pages/Authentication/Login/Login";
+import Register from "./pages/Authentication/Register/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./utils/ProtectedRoute";

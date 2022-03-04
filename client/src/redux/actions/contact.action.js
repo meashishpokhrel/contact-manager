@@ -1,6 +1,5 @@
 // Creaing some actions
 import axios from "axios";
-import { url } from "../../api/index";
 import { toast } from "react-toastify";
 
 import {
@@ -10,6 +9,8 @@ import {
   DELETE_CONTACT,
   GET_ONE_CONTACT,
 } from "../constant/types";
+
+const url = process.env.REACT_APP_URL;
 
 export const addContact = (contact) => {
   return (dispatch) => {

@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact, editContact } from "../../redux/actions/contact.action";
+import {
+  deleteContact,
+  editContact,
+} from "../../../redux/actions/contact.action";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
-import "./Contact.scss";
+import "./ContactCard.scss";
 
 const Contact = ({ contact }) => {
   const { _id, photo } = contact;

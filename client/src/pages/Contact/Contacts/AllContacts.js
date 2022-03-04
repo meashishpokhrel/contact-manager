@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/actions/contact.action";
+import { deleteContact } from "../../../redux/actions/contact.action";
 import Avatar from "react-avatar";
 import { Link } from "react-router-dom";
-import Contact from "../../component/contact/Contact";
-import { getContact } from "../../redux/actions/contact.action";
+import Contact from "../../../component/Contacts/Contact-Card/ContactCard";
+import { getContact } from "../../../redux/actions/contact.action";
 import "./AllContacts.scss";
 
 const AllContacts = () => {

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/actions/contact.action";
+import { addContact } from "../../../redux/actions/contact.action";
 import shortid from "shortid";
 import { useNavigate } from "react-router-dom";
-import Input from "../../component/Form-Input/Input";
-import ContactForm from "../../component/contact-form/contactForm";
+import Input from "../../../component/Form-Input/Input";
+import ContactForm from "../../../component/Contacts/Contact-Form/contactForm";
 
 const Addcontact = () => {
   let navigate = useNavigate();

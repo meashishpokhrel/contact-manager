@@ -1,5 +1,4 @@
 import axios from "axios";
-import { url } from "../../api/index";
 import { toast } from "react-toastify";
 import {
   CREATE_USER,
@@ -7,6 +6,8 @@ import {
   SIGNIN_USER,
   SIGNOUT_USER,
 } from "../constant/types";
+
+const url = process.env.REACT_APP_URL;
 
 export const addUser = (user) => {
   return (dispatch) => {

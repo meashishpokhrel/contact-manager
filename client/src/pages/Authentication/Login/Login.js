@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 
-import { signIn } from "../../redux/actions/auth.action";
-import Input from "../../component/Form-Input/Input";
-import AuthForm from "../../component/auth-form/authForm";
+import { signIn } from "../../../redux/actions/auth.action";
+import Input from "../../../component/Form-Input/Input";
+import AuthForm from "../../../component/Authentication/Auth-Form/AuthForm";
 
 const Login = () => {
   const dispatch = useDispatch();
