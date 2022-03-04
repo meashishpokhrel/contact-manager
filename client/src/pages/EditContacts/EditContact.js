@@ -52,7 +52,6 @@ const Editcontact = () => {
   });
 
   const state = useEffect(() => {
-    console.log(contact);
     if (contact) {
       let newForm = { ...formData };
       newForm.name.value = contact.name;

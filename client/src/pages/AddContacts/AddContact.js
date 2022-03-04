@@ -69,7 +69,6 @@ const Addcontact = () => {
     if (!address) {
       errors.address = "Please Enter Address";
     }
-    console.log(errors);
     return errors;
   };
 

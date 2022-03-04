@@ -1,6 +1,12 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
+/**
+ * Login with username and password
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<token>}
+ */
 const loginUser = async (email, password) => {
   try {
     let user = await User.findOne({ email });
@@ -16,6 +22,13 @@ const loginUser = async (email, password) => {
   }
 };
 
+/**
+ * Register with name, password, email
+ * @param {string} name
+ * @param {string} email
+ * @param {string} password
+ * @returns {Promise<token>}
+ */
 const registerUser = async (name, email, password) => {
   try {
     let user = await User.findOne({ email });

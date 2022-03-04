@@ -13,16 +13,13 @@ const ContactForm = ({
   const handleChange = (e, keyName) => {
     let newFormData = { ...formData };
     newFormData[keyName].value = e.target.value;
-    console.log(keyName);
     if (keyName === "photo") {
       const file = e.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
         newFormData[keyName].defaultValue = reader.result;
-        console.log(reader.result);
       };
-      console.log("photo triggered");
     }
     setFormData(newFormData);
   };

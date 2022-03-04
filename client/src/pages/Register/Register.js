@@ -60,7 +60,6 @@ function Register() {
     } else if (password.length > 10) {
       errors.password = "Password cannot exceed more than 10 characters! ";
     }
-    console.log(errors);
     return errors;
   };
 

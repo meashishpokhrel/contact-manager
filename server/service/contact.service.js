@@ -1,19 +1,10 @@
 const Contact = require("../models/Contact");
 
-// const loginUser = async (email, password) => {
-//   try {
-//     let user = await User.findOne({ email });
-
-//     if (!user || !(await bcrypt.compare(password, user.password))) {
-//       throw { msg: "Invalid Credentials !" };
-//     }
-//     const token = user.getSignedToken(user);
-//     return token;
-//   } catch (err) {
-//     console.error(err?.message);
-//     throw { msg: "IServer Error !" };
-//   }
-// };
+/**
+ * Get contacts with user ID
+ * @param {string} userID
+ * @returns {Promise<Contacts>}
+ */
 
 const getContacts = async (userID) => {
   try {
@@ -27,6 +18,11 @@ const getContacts = async (userID) => {
   }
 };
 
+/**
+ * Get One contacts with user ID
+ * @param {string} userID
+ * @returns {Promise<Contacts>}
+ */
 const getOneContact = async (id) => {
   try {
     const contacts = await Contact.findById(id);
@@ -35,6 +31,14 @@ const getOneContact = async (id) => {
     throw { message: err.message };
   }
 };
+
+/**
+ * Create contact with user ID and  COntact Detail
+ * @param {string} userID
+ * @param {object} contactDetail
+ * @returns {Promise<New Contacts>}
+ */
+
 const createContact = async (userID, contactDetail) => {
   const { name, email, phone, photo, address, favourite } = contactDetail;
   try {
@@ -61,6 +65,12 @@ const createContact = async (userID, contactDetail) => {
   }
 };
 
+/**
+ *Delete contact with user ID
+ * @param {string} id -> rep.params.id
+ * @param {string} userID -> req.user._id
+ * @returns {Promise}
+ */
 const deleteContact = async (id, userID) => {
   try {
     const contact = await Contact.findById(id);
@@ -82,6 +92,15 @@ const deleteContact = async (id, userID) => {
     throw { message: "Server Error" };
   }
 };
+
+/**
+ *Update  contact with id, UserID, contactDetail
+ * @param {string} id -> rep.params.id
+ * @param {string} userID -> req.user._id
+ * @param {Object} updateContact -> req.user._id
+ * @returns {Promise<UpdatedCOntact>}
+ */
+
 const updateContact = async (id, userID, updateContact) => {
   try {
     const contact = await Contact.findById(id);

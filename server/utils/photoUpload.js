@@ -18,8 +18,6 @@ const singleUpload = upload.single("photo");
 exports.uploadContactPhoto = (req, res, next) => {
   singleUpload(req, res, (error) => {
     if (error) {
-      console.log(error);
-      console.log("Not WOrking");
       return res.status(422).send({ message: "Image upload fail!" });
     }
     next();
@@ -38,8 +36,6 @@ exports.getContactPhotoUrl = async (req, res, next) => {
     } else {
       req.body.photo = "";
     }
-
-    // console.log(result);
 
     next();
   } catch (err) {

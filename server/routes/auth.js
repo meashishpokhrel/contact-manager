@@ -14,8 +14,15 @@ const {
   registerValidation,
 } = require("../validator/user.validator");
 
-//Authenticating user and getting the token
+// @route POST /login
+// @desc Login User with email and passowrd
+// @access Public
+
 router.post("/login", loginValidation, validator, authController.loginUser);
+
+// @route POST /register
+// @desc Register User with name, email and passowrd
+// @access Public
 
 router.post(
   "/register",

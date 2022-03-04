@@ -18,7 +18,6 @@ export const addContact = (contact) => {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(({ data }) => {
-        console.log({ data });
         dispatch({
           type: CREATE_CONTACT,
           payload: data,

@@ -16,32 +16,46 @@ const { contactValidation } = require("../validator/contact.validator");
 
 const router = express.Router();
 
-// api/contacts
-//Getting all users contacts
+// @route GET /contacts
+// @desc Get All Contacts
+// @access Private
 router.get("/", auth, contactController.getContacts);
 
+// @route GET /contacts/:id
+// @desc Get one Contacts
+// @access Private
 router.get("/:id", auth, contactController.getOneContact);
 
+// @route POST /contacts
+// @desc ADD Contacts
+// @access Private
 router.post(
   "/",
   auth,
   uploadContactPhoto,
   getContactPhotoUrl,
-  // contactValidation,
-  // validator,
+  contactValidation,
+  validator,
   contactController.createContact
 );
+
+// @route PUT /contacts/:id
+// @desc Edit Contacts
+// @access Private
 
 router.put(
   "/:id",
   auth,
   uploadContactPhoto,
   getContactPhotoUrl,
-  // contactValidation,
-  // validator,
+  contactValidation,
+  validator,
   contactController.updateContact
 );
 
+// @route DELETE /contacts/:id
+// @desc DELETE Contacts
+// @access Private
 router.delete("/:id", auth, contactController.deleteContact);
 
 module.exports = router;
