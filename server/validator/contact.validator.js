@@ -6,7 +6,7 @@ const phone = check("phone")
   .notEmpty()
   .withMessage("Phone is required.")
   .isLength({ min: 10, max: 10 })
-  .withMessage("Phone must be 10 digits long.");
+  .withMessage("Phone must be 10 digits long !");
 
 const email = check("email")
   .trim()
