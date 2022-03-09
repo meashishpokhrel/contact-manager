@@ -23,12 +23,14 @@ app.use(express.json({ limit: "5MB" }));
 
 app.use("/api/auth", authUser);
 app.use("/api/contacts", contact);
+app.get("/api", (req, res) => res.send("API IS WORKING"));
 
 //Build path
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 // Step 2:
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
 
 //COnfiguting the Server

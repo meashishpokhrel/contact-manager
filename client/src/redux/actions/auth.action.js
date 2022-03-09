@@ -1,5 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import jwtDecode from "jwt-decode";
 import {
   CREATE_USER,
   LOAD_USER,
@@ -7,14 +10,14 @@ import {
   SIGNOUT_USER,
 } from "../constant/types";
 
-const url = process.env.REACT_APP_URL;
-
 export const addUser = (user, callback) => {
   return (dispatch) => {
     axios
-      .post(`${url}/auth/register`, user)
+      .post(`/api/auth/register`, user)
       .then((token) => {
         localStorage.setItem("token", token.data);
+        const user = jwtDecode(token.data);
+        runSignOutTimer(dispatch, user);
         dispatch({
           type: CREATE_USER,
           token: token.data,
@@ -32,16 +35,18 @@ export const addUser = (user, callback) => {
 export const signIn = (email, password, callback) => {
   return (dispatch) => {
     axios
-      .post(`${url}/auth/login`, { email, password })
+      .post(`/api/auth/login`, { email, password })
       .then((token) => {
         localStorage.setItem("token", token.data);
-
+        const user = jwtDecode(token.data);
+        runSignOutTimer(dispatch, user);
         dispatch({
           type: SIGNIN_USER,
           token: token.data,
         });
         callback();
       })
+
       .catch((error) => {
         toast.error(error.response?.data.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
@@ -56,4 +61,11 @@ export const signOut = () => {
       type: SIGNOUT_USER,
     });
   };
+};
+
+export const runSignOutTimer = (dispatch, user) => {
+  const expiry = (user.exp - user.iat) * 1000;
+  setTimeout(() => {
+    dispatch(signOut());
+  }, expiry);
 };

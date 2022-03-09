@@ -42,7 +42,7 @@ const getOneContact = async (id) => {
 const createContact = async (userID, contactDetail) => {
   const { name, email, phone, photo, address, favourite } = contactDetail;
   try {
-    const checkContact = await Contact.findOne({ phone });
+    const checkContact = await Contact.findOne({ phone: phone.homeNumber });
 
     if (checkContact) {
       throw { message: "Contact already created with Same Number! " };

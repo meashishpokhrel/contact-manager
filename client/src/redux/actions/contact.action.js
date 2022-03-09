@@ -10,12 +10,10 @@ import {
   GET_ONE_CONTACT,
 } from "../constant/types";
 
-const url = process.env.REACT_APP_URL;
-
 export const addContact = (contact) => {
   return (dispatch) => {
     axios
-      .post(`${url}/contacts`, contact, {
+      .post(`/api/contacts`, contact, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(({ data }) => {
@@ -35,7 +33,7 @@ export const addContact = (contact) => {
 export const getContact = () => {
   return (dispatch) => {
     axios
-      .get(`${url}/contacts`, {
+      .get(`/api/contacts`, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(({ data }) => {
@@ -55,7 +53,7 @@ export const getContact = () => {
 export const getOneContact = (id) => {
   return (dispatch) => {
     axios
-      .get(`${url}/contacts/${id}`, {
+      .get(`/api/contacts/${id}`, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(({ data }) => {
@@ -75,7 +73,7 @@ export const getOneContact = (id) => {
 export const editContact = (updatedContact, id) => {
   return (dispatch) => {
     axios
-      .put(`${url}/contacts/${id}`, updatedContact, {
+      .put(`/api/contacts/${id}`, updatedContact, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(({ data }) => {
@@ -95,7 +93,7 @@ export const editContact = (updatedContact, id) => {
 export const deleteContact = (id) => {
   return (dispatch) => {
     axios
-      .delete(`${url}/contacts/${id}`, {
+      .delete(`/api/contacts/${id}`, {
         headers: { "x-auth-token": localStorage.getItem("token") },
       })
       .then(({ data }) => {

@@ -24,7 +24,7 @@ UserSchema.methods.getSignedToken = (user) => {
     { _id: user._id, name: user.name, email: user.email },
     jwtKey,
     {
-      expiresIn: 480000,
+      expiresIn: 300,
     }
   );
   return token;
