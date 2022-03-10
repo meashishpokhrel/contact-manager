@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import jwtDecode from "jwt-decode";
 import {
@@ -16,8 +16,6 @@ export const addUser = (user, callback) => {
       .post(`/api/auth/register`, user)
       .then((token) => {
         localStorage.setItem("token", token.data);
-        const user = jwtDecode(token.data);
-        runSignOutTimer(dispatch, user);
         dispatch({
           type: CREATE_USER,
           token: token.data,
@@ -38,8 +36,6 @@ export const signIn = (email, password, callback) => {
       .post(`/api/auth/login`, { email, password })
       .then((token) => {
         localStorage.setItem("token", token.data);
-        const user = jwtDecode(token.data);
-        runSignOutTimer(dispatch, user);
         dispatch({
           type: SIGNIN_USER,
           token: token.data,
@@ -63,9 +59,13 @@ export const signOut = () => {
   };
 };
 
-export const runSignOutTimer = (dispatch, user) => {
+export const signOutTimer = () => {
+  const getToken = localStorage.getItem("token");
+  const user = jwtDecode(getToken);
   const expiry = (user.exp - user.iat) * 1000;
-  setTimeout(() => {
-    dispatch(signOut());
-  }, expiry);
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(signOut());
+    }, expiry);
+  };
 };

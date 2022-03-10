@@ -2,13 +2,16 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "../../../redux/actions/contact.action";
 import Avatar from "react-avatar";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Contact from "../../../component/Contacts/Contact-Card/ContactCard";
 import { getContact } from "../../../redux/actions/contact.action";
+import { signOutTimer } from "../../../redux/actions/auth.action";
+
 import "./AllContacts.scss";
 
 const AllContacts = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const contacts = useSelector((state) => state.contact.contacts);
   const isLoading = useSelector((state) => state.contact.isLoading);
 
@@ -27,6 +30,7 @@ const AllContacts = () => {
 
   useEffect(() => {
     dispatch(getContact());
+    dispatch(signOutTimer());
   }, [dispatch]);
 
   return (
