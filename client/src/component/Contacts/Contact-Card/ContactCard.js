@@ -10,6 +10,7 @@ import "./ContactCard.scss";
 
 const Contact = ({ contact }) => {
   const { _id, photo } = contact;
+
   const dispatch = useDispatch();
 
   return (
@@ -47,8 +48,17 @@ const Contact = ({ contact }) => {
         <div className="card-details-wrapper">
           <div className="card-details">
             <p className="card__description">Email: {contact.email}</p>
-            <p className="card__description">Phone: {contact.phone}</p>
             <p className="card__description">Address: {contact.address}</p>
+            <p className="card__description__phone">Phone</p>
+            <p className="card__description">
+              Mobile Number: {contact.phone.mobileNumber}
+            </p>
+            <p className="card__description">
+              Home Number: {contact.phone.homeNumber}
+            </p>
+            <p className="card__description">
+              Work Number: {contact.phone.workNumber}
+            </p>
           </div>
         </div>
         <div className="card-actions">

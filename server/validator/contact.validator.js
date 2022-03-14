@@ -1,12 +1,12 @@
 const { check } = require("express-validator");
 
 const name = check("name").trim().notEmpty().withMessage("Name is required.");
-const phone = check("phone")
+
+const mobileNumber = check("phone.mobileNumber")
   .trim()
   .notEmpty()
-  .withMessage("Phone is required.")
   .isLength({ min: 10, max: 10 })
-  .withMessage("Phone must be 10 digits long !");
+  .withMessage("Mobile Number must be 10 digits long !");
 
 const email = check("email")
   .trim()
@@ -19,6 +19,6 @@ const address = check("address")
   .notEmpty()
   .withMessage("Address is required.");
 
-const contactValidation = [name, email, phone, address];
+const contactValidation = [name, email, address, mobileNumber];
 
 module.exports = { contactValidation };

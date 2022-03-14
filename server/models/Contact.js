@@ -1,5 +1,17 @@
 const mongoose = require("mongoose");
 
+const phoneSchema = mongoose.Schema({
+  mobileNumber: {
+    type: Number,
+  },
+  workNumber: {
+    type: Number,
+  },
+  homeNumber: {
+    type: Number,
+  },
+});
+
 const ContactSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -12,7 +24,7 @@ const ContactSchema = mongoose.Schema({
     type: String,
   },
   phone: {
-    type: String,
+    type: phoneSchema,
   },
   photo: {
     type: String,

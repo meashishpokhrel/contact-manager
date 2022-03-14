@@ -14,7 +14,24 @@ const Addcontact = () => {
   const [formData, setFormData] = useState({
     name: { value: "", placeholder: "Name", type: "text", label: "Name" },
     email: { value: "", placeholder: "Email", type: "email", label: "Email" },
-    phone: { value: "", placeholder: "Phone", type: "text", label: "Phone" },
+    mobileNumber: {
+      value: "",
+      placeholder: "Phone",
+      type: "number",
+      label: "Mobile Number",
+    },
+    homeNumber: {
+      value: "",
+      placeholder: "Phone",
+      type: "number",
+      label: "Home Number",
+    },
+    workNumber: {
+      value: "",
+      placeholder: "Phone",
+      type: "number",
+      label: "Work Number",
+    },
     address: {
       value: "",
       placeholder: "Address",
@@ -36,11 +53,13 @@ const Addcontact = () => {
       id: shortid.generate(),
       name: formData.name.value,
       email: formData.email.value,
-      phone: formData.phone.value,
+      mobileNumber: formData.mobileNumber.value,
+      homeNumber: formData.homeNumber.value,
+      workNumber: formData.workNumber.value,
       photo: formData.photo.defaultValue,
       address: formData.address.value,
     };
-    if (newContact.name && newContact.phone) {
+    if (newContact.name && newContact.mobileNumber) {
       dispatch(addContact(newContact));
       navigate("/contact");
     }
@@ -49,7 +68,7 @@ const Addcontact = () => {
   const validate = (formData) => {
     let name = formData.name.value;
     let email = formData.email.value;
-    let phone = formData.phone.value;
+    let mobileNumber = formData.mobileNumber.value;
     let address = formData.address.value;
     // let photo = formData.photo.value;
 
@@ -63,9 +82,9 @@ const Addcontact = () => {
     } else if (!regex.test(email)) {
       errors.email = "This is not a valid email format! ";
     }
-    if (!phone) {
-      errors.phone = "Phone Number is required! ";
-    }
+    // if (!mobileNumber) {
+    //   errors.mobileNumber = "Mobile Phone Number is required! ";
+    // }
     if (!address) {
       errors.address = "Please Enter Address";
     }

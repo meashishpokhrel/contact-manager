@@ -40,19 +40,30 @@ const getOneContact = async (id) => {
  */
 
 const createContact = async (userID, contactDetail) => {
-  const { name, email, phone, photo, address, favourite } = contactDetail;
+  const {
+    name,
+    email,
+    mobileNumber,
+    homeNumber,
+    workNumber,
+    photo,
+    address,
+    favourite,
+  } = contactDetail;
   try {
-    const checkContact = await Contact.findOne({ phone: phone.homeNumber });
+    const checkContact = await Contact.findOne({
+      "phone.mobileNumber": mobileNumber,
+    });
 
     if (checkContact) {
-      throw { message: "Contact already created with Same Number! " };
+      throw { message: "Contact already created with Same Mobile Number! " };
     }
 
     const newContact = new Contact({
       user: userID,
       name,
       email,
-      phone,
+      phone: { mobileNumber, homeNumber, workNumber },
       photo,
       address,
       favourite,
@@ -106,29 +117,32 @@ const updateContact = async (id, userID, updateContact) => {
     const contact = await Contact.findById(id);
     if (!contact) {
       throw {
-        msg: "Contact not found.",
+        message: "Contact not found.",
       };
     }
     if (contact && contact.user.toString() !== userID) {
       throw {
-        msg: "Unauthorized.",
+        message: "Unauthorized.",
       };
     }
-    const isDuplicate = await Contact.findOne({ phone: updateContact.phone });
+    const isDuplicate = await Contact.findOne({
+      "phone.mobileNumber": updateContact.phone.mobileNumber,
+    });
     if (isDuplicate && isDuplicate.user.toString() !== userID) {
       throw {
-        msg: "Phone number already exists.",
+        message: "Phone number already exists.",
       };
     }
     const modifiedContact = await Contact.findByIdAndUpdate(
       id,
       updateContact,
+
       { new: true, runValidators: true } //New data update bhayepachi ko aaucha
     );
     return modifiedContact;
   } catch (err) {
     console.error(err.message);
-    throw { msg: "Server Error" };
+    throw { message: err?.message };
   }
 };
 

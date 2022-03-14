@@ -31,11 +31,23 @@ const Editcontact = () => {
       type: "email",
       label: "Update Email",
     },
-    phone: {
+    mobileNumber: {
       value: "",
       placeholder: "Phone",
-      type: "text",
-      label: "Update Phone",
+      type: "number",
+      label: "Phone Mobile Number",
+    },
+    homeNumber: {
+      value: "",
+      placeholder: "Phone",
+      type: "number",
+      label: "Home Number",
+    },
+    workNumber: {
+      value: "",
+      placeholder: "Phone",
+      type: "number",
+      label: "Work Number",
     },
     address: {
       value: "",
@@ -56,7 +68,9 @@ const Editcontact = () => {
       let newForm = { ...formData };
       newForm.name.value = contact.name;
       newForm.email.value = contact.email;
-      newForm.phone.value = contact.phone;
+      newForm.mobileNumber.value = contact.phone.mobileNumber;
+      newForm.homeNumber.value = contact.phone.homeNumber;
+      newForm.workNumber.value = contact.phone.workNumber;
       newForm.address.value = contact.address;
       newForm.photo.defaultValue = contact.photo;
       setFormData(newForm);
@@ -72,7 +86,11 @@ const Editcontact = () => {
     const editedContact = Object.assign(contact, {
       name: formData.name.value,
       address: formData.address.value,
-      phone: formData.phone.value,
+      phone: {
+        mobileNumber: formData.mobileNumber.value,
+        homeNumber: formData.homeNumber.value,
+        workNumber: formData.workNumber.value,
+      },
       email: formData.email.value,
       photo: formData.photo.defaultValue,
     });
